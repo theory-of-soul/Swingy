@@ -1,6 +1,6 @@
 package com.game.swingy.core;
 
-public class Heros {
+public class Hero {
 
     protected int id;//TODO як краще визначати героя та ворога
     protected String name;
@@ -10,16 +10,20 @@ public class Heros {
     protected int attack;
     protected int defense;
     protected int hitPoints;
+    protected String artefacts;
+    protected Coorditnates coorditnates;
 
     static private int idCounter; //для унікальності id
 
-    public Heros(String name,
-                 String heroClass,
-                 int level,
-                 int experience,
-                 int attack,
-                 int defense,
-                 int hitPoints) {
+    public Hero(String name,
+                String heroClass,
+                int level,
+                int experience,
+                int attack,
+                int defense,
+                int hitPoints,
+                String artefacts,
+                Coorditnates coorditnates) {
         this.id = nextId();
         this.name = name;
         this.heroClass = heroClass;
@@ -28,6 +32,8 @@ public class Heros {
         this.attack = attack;
         this.defense = defense;
         this.hitPoints = hitPoints;
+        this.artefacts = artefacts;
+        this.coorditnates = coorditnates;
     }
 
 
