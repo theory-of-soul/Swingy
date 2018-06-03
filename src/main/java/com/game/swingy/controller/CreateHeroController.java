@@ -34,14 +34,28 @@ public class CreateHeroController {
 
 
         String nameHero;
+        String selectedHeroClass;
 
 
         Coorditnates coorditnates = new Coorditnates(0,0);
-        heroBuilder.setName(createHeroView.getNameHero().getText());
-        String selectedHeroClass = (String) createHeroView.getHeroClassList().getSelectedItem();
-        heroBuilder.setHeroClass(selectedHeroClass);
+        nameHero = createHeroView.getNameHero().getText();
+        selectedHeroClass = (String) createHeroView.getHeroClassList().getSelectedItem();
+
+        switch (selectedHeroClass) {
+
+            case ("Samnite") :
+                heroClassConstructor.constructSamnite(heroBuilder, nameHero);
+                break;
+            case ("Skissor") :
+                heroClassConstructor.constructSkissor(heroBuilder, nameHero);
+                break;
+            case ("Peltasts") :
+                heroClassConstructor.constructPeltasts(heroBuilder, nameHero);
+                break;
+
+        }
         Hero tyty = heroBuilder.createHero();//TODO записувати героїв в БД, або в масив а потім в БД
-        System.out.println(tyty.getName());
+        System.out.println(tyty.toString());
         System.out.println(tyty.getHeroClass());
         WindowEvent windowEvent = new WindowEvent(createHeroView.getJf(), WindowEvent.WINDOW_CLOSING);
         createHeroView.getJf().dispatchEvent(windowEvent);
