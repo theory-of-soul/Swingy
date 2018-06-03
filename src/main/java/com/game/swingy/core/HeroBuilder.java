@@ -10,7 +10,7 @@ public class HeroBuilder implements Builder {
     private int attack;
     private int defense;
     private int hitPoints;
-    private String artefacts;
+    private Artefacts artefacts;
     private Coorditnates coorditnates;
 
     @Override
@@ -49,7 +49,7 @@ public class HeroBuilder implements Builder {
     }
 
     @Override
-    public void setArtefacts(String artefacts) {
+    public void setArtefacts(Artefacts artefacts) {
         this.artefacts = artefacts;
     }
 
@@ -58,16 +58,14 @@ public class HeroBuilder implements Builder {
         this.coorditnates = coorditnates;
     }
 
-    public Hero createHero(String name,
-                           String heroClass,
-                           int level,
-                           int experience,
-                           int attack,
-                           int defense,
-                           int hitPoints,
-                           String artefacts,
-                           Coorditnates coorditnates) {
+    public Hero createHero() {
         return new Hero(name, heroClass, level, experience, attack, defense, hitPoints, artefacts, coorditnates);
 
     }
+    public Hero createEnemy() {
+        return new Hero(name, heroClass, level, experience, attack, defense, hitPoints, artefacts, coorditnates);
+
+    }
+
+
 }

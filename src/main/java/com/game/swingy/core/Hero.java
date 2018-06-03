@@ -1,6 +1,6 @@
 package com.game.swingy.core;
 
-public class Hero {
+public class Hero implements HeroActions{
 
     protected int id;//TODO як краще визначати героя та ворога
     protected String name;
@@ -10,7 +10,7 @@ public class Hero {
     protected int attack;
     protected int defense;
     protected int hitPoints;
-    protected String artefacts;
+    protected Artefacts artefacts;
     protected Coorditnates coorditnates;
 
     static private int idCounter; //для унікальності id
@@ -22,7 +22,7 @@ public class Hero {
                 int attack,
                 int defense,
                 int hitPoints,
-                String artefacts,
+                Artefacts artefacts,
                 Coorditnates coorditnates) {
         this.id = nextId();
         this.name = name;
@@ -36,6 +36,52 @@ public class Hero {
         this.coorditnates = coorditnates;
     }
 
+    @Override
+    public void levelUp(int hitPoint, int experience) {
+
+        if (experience >= 1000 && experience < 2450)
+            this.level = 2;
+        else if (experience >= 2450)
+            this.level = 3;
+    }
+
+    @Override
+    public void experienceUp(int experience) {
+
+        this.experience += experience;
+    }
+
+    @Override
+    public void attack(int enemyAttack) {
+
+        int damage = enemyAttack - this.defense;
+        if (damage > 0)
+            this.hitPoints -= damage;
+    }
+
+    @Override
+    public void move(Direction direction) {
+
+        int x = this.coorditnates.getX();
+        int y = this.coorditnates.getY();
+        switch (direction) {
+            case EAST:
+                this.coorditnates = new Coorditnates(x + 1, y);
+                break;
+            case WEST:
+                this.coorditnates = new Coorditnates(x - 1, y);
+                break;
+            case NORTH:
+                this.coorditnates = new Coorditnates(x, y - 1);
+                break;
+            case SOUTH:
+                this.coorditnates = new Coorditnates(x, y + 1);
+                break;
+        }
+
+
+        System.out.println("d");
+    }
 
     private int nextId() {
 

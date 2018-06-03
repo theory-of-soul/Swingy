@@ -1,12 +1,14 @@
 package com.game.swingy;
 
 import com.game.swingy.controller.StarterController;
+import com.game.swingy.view.gui.StartView;
 
 public class Game {
 
     public static void main(String[] args) {
 
-        StarterController starterController = new StarterController();
-        starterController.startGame();
+        StartView startView = new StartView();
+        StarterController starterController = new StarterController(startView);
+        starterController.initGame();
     }
 }

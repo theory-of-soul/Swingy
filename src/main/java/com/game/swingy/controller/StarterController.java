@@ -8,26 +8,35 @@ import java.awt.event.ActionListener;
 
 public class StarterController {
 
-    StartView startView = new StartView();
+    private StartView startView;
 
-    public void startGame() {
+    public StarterController(StartView view) {
+        this.startView = view;
+    }
 
+    public void initGame() {
         startView.getBtnCreateHero().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onClickCreateHero();
             }
         });
-        startView.show();
+        startView.getBtnPreviouslyHero().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onClickPreviouslyHero();
+            }
+        });
     }
 
-    public void onClickCreateHero(){
+    private void onClickCreateHero(){
 
-        System.out.println("Отработало создание героя");
         CreateHeroView createHeroView = new CreateHeroView();
-        createHeroView.show();
+        System.out.println("Отработало создание контроллера");
+        CreateHeroController createHeroController = new CreateHeroController(createHeroView);
+        createHeroController.initCreateHero();
+
     }
 
-    public void onClickPreviouslyHero(){
+    private void onClickPreviouslyHero(){
 
         System.out.println("Отработало предвудущие герои");
     }
