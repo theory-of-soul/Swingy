@@ -12,6 +12,7 @@ public class HeroClassConstructor {
         builder.setDefense(15);
         builder.setHitPoints(100);
         Artefacts artefacts = new Artefacts(5,5,2);
+        builder.setCoorditnates(new Coorditnates(2,2));
         builder.setArtefacts(artefacts);
 
     }
@@ -26,6 +27,7 @@ public class HeroClassConstructor {
         builder.setDefense(10);
         builder.setHitPoints(100);
         Artefacts artefacts = new Artefacts(2,5,5);
+        builder.setCoorditnates(new Coorditnates(2,2));
         builder.setArtefacts(artefacts);
 
     }
@@ -40,6 +42,7 @@ public class HeroClassConstructor {
         builder.setDefense(20);
         builder.setHitPoints(100);
         Artefacts artefacts = new Artefacts(5,2,5);
+        builder.setCoorditnates(new Coorditnates(2,2));
         builder.setArtefacts(artefacts);
 
     }

@@ -147,4 +147,12 @@ public class Hero implements HeroActions{
     public void setHitPoints(int hitPoints) {
         this.hitPoints = hitPoints;
     }
+
+    public Coorditnates getCoorditnates() {
+        return coorditnates;
+    }
+
+    public void setCoorditnates(Coorditnates coorditnates) {
+        this.coorditnates = coorditnates;
+    }
 }

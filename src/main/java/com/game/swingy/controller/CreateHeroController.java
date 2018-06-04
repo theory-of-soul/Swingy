@@ -28,7 +28,7 @@ public class CreateHeroController {
         System.out.println("Отработало создание героя");
         HeroClassConstructor heroClassConstructor = new HeroClassConstructor();
         HeroBuilder heroBuilder = new HeroBuilder();
-        Map map = new Map();
+
 
 
         String nameHero;
@@ -52,11 +52,12 @@ public class CreateHeroController {
                 break;
 
         }
-        map.register(heroBuilder.createHero());//TODO записувати героїв в БД, або в масив а потім в БД
+        Map.getMap().register(heroBuilder.createHero());//TODO записувати героїв в БД, або в масив а потім в БД
         //System.out.println(tyty.toString());
         //System.out.println(tyty.getHeroClass());
         WindowEvent windowEvent = new WindowEvent(createHeroView.getJf(), WindowEvent.WINDOW_CLOSING);
         createHeroView.getJf().dispatchEvent(windowEvent);
         MapController mapController = new MapController(0);//TODO правильно передавати рівень героя;
+        mapController.btnUnitsDeAndActivated();
     }
 }

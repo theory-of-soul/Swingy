@@ -15,9 +15,11 @@ public class MapView {
     private JButton btnUnits[][];
     private String[] heroClass;
     private JComboBox<String> heroClassList;
+    private int mapSize;
 
     public MapView(int mapSize) {
 
+        this.mapSize = mapSize;
         //heroClass = new String[] {"Samnite", "Skissor", "Peltasts"};
         btnUnits = new JButton[mapSize][mapSize];
         jf = new JFrame("Swingy");
@@ -26,14 +28,16 @@ public class MapView {
         panel.setSize(mapSize * 95,mapSize * 95);
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++){
-                btnUnits[i][j] = new JButton("button" + i + j);
+                if (i == (mapSize / 2) && j == (mapSize / 2))
+                    btnUnits[i][j] = new JButton("Hero");
+                else
+                    btnUnits[i][j] = new JButton("Villain");
                 try {
-                    Image img = ImageIO.read(getClass().getResource("/main/java/com/game/swingy/utils/superman.bmp"));
-                    btnUnits[i][j].setIcon(new ImageIcon(getClass().getResource("/src/main/java/com/game/swingy/utils/superman.bmp")));
+//                    Image img = ImageIO.read(getClass().getResource("/main/java/com/game/swingy/utils/superman.bmp"));
+//                    btnUnits[i][j].setIcon(new ImageIcon(getClass().getResource("/../../utils/superman.bmp")));
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }
-                System.out.println();
                 panel.add(btnUnits[i][j]);
             }
         }
@@ -42,5 +46,38 @@ public class MapView {
         jf.setVisible(true);
         jf.setLocationRelativeTo(null);
 
+    }
+
+    public JButton getBtnUnits(int x, int y) {
+
+        for (int i = 0; i < mapSize; i++) {
+            for (int j = 0; j < mapSize; j++){
+                if (i == x && j == y)
+                    return btnUnits[i][j];
+            }
+        }
+        throw new Error("Not valid x and y coordinats");
+    }
+
+    public void btnUnitsDeActivated(int x, int y) {
+
+        btnUnits[x][y].setEnabled(false);
+    }
+
+    public void btnUnitsActivated(int x, int y) {
+
+        btnUnits[x][y].setEnabled(true);
+    }
+
+    public void changeLableButton(int heroX, int heroY) {
+
+        for (int i = 0; i < mapSize; i++) {
+            for (int j = 0; j < mapSize; j++){
+                if (i == heroX && j == heroY)
+                    btnUnits[i][j].setText("Hero");
+                else
+                    btnUnits[i][j].setText("Villain");
+            }
+        }
     }
 }
