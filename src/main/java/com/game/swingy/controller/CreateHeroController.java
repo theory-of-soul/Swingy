@@ -1,9 +1,6 @@
 package com.game.swingy.controller;
 
-import com.game.swingy.core.Coorditnates;
-import com.game.swingy.core.Hero;
-import com.game.swingy.core.HeroBuilder;
-import com.game.swingy.core.HeroClassConstructor;
+import com.game.swingy.core.*;
 import com.game.swingy.view.gui.CreateHeroView;
 
 import java.awt.event.ActionEvent;
@@ -31,6 +28,7 @@ public class CreateHeroController {
         System.out.println("Отработало создание героя");
         HeroClassConstructor heroClassConstructor = new HeroClassConstructor();
         HeroBuilder heroBuilder = new HeroBuilder();
+        Map map = new Map();
 
 
         String nameHero;
@@ -54,10 +52,11 @@ public class CreateHeroController {
                 break;
 
         }
-        Hero tyty = heroBuilder.createHero();//TODO записувати героїв в БД, або в масив а потім в БД
-        System.out.println(tyty.toString());
-        System.out.println(tyty.getHeroClass());
+        map.register(heroBuilder.createHero());//TODO записувати героїв в БД, або в масив а потім в БД
+        //System.out.println(tyty.toString());
+        //System.out.println(tyty.getHeroClass());
         WindowEvent windowEvent = new WindowEvent(createHeroView.getJf(), WindowEvent.WINDOW_CLOSING);
         createHeroView.getJf().dispatchEvent(windowEvent);
+        MapController mapController = new MapController(0);//TODO правильно передавати рівень героя;
     }
 }
