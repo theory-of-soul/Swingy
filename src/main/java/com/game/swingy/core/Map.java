@@ -34,10 +34,10 @@ public class Map {
         return observers;
     }
 
-    public int getMapSize() {
+    /*public int getMapSize() {
         if(map == null)
             return 5;
         int heroLevel = Map.getMap().getObservers().get(0).getLevel();
         return (heroLevel - 1) * 5 + 10 - (heroLevel % 2);
-    }
+    }*/
 }

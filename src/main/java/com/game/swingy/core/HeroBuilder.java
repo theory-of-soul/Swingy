@@ -60,8 +60,8 @@ public class HeroBuilder implements Builder {
 
     @Override
     public void setCoorditnates(Coorditnates coorditnates) {
-        int mapSize = Map.getMap().getMapSize();
-        this.coorditnates = new Coorditnates(mapSize / 2, mapSize / 2);//TODO як визначити кординати героя якщо його ще немає, тобто ставити вручну а якщо герой готой то вираховувати з його рівня
+//        int mapSize = Map.getMap().getMapSize();
+        this.coorditnates = new Coorditnates(/*mapSize /*/ 2, /*mapSize /*/ 2);//TODO як визначити кординати героя якщо його ще немає, тобто ставити вручну а якщо герой готой то вираховувати з його рівня
     }
 
     public Hero createHero() {
