@@ -28,16 +28,10 @@ public class MapView {
         panel.setSize(mapSize * 95,mapSize * 95);
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++){
-                if (i == (mapSize / 2) && j == (mapSize / 2))
-                    btnUnits[i][j] = new JButton("Hero");
-                else
-                    btnUnits[i][j] = new JButton("Villain");
-                try {
-//                    Image img = ImageIO.read(getClass().getResource("/main/java/com/game/swingy/utils/superman.bmp"));
-//                    btnUnits[i][j].setIcon(new ImageIcon(getClass().getResource("/../../utils/superman.bmp")));
-                } catch (Exception ex) {
-                    System.out.println(ex);
-                }
+//                if (i == (mapSize / 2) && j == (mapSize / 2))
+                    btnUnits[i][j] = new JButton();
+//                else
+                    btnUnits[i][j] = new JButton();
                 panel.add(btnUnits[i][j]);
             }
         }
@@ -45,6 +39,8 @@ public class MapView {
         jf.setSize(mapSize * 95, mapSize * 95);
         jf.setVisible(true);
         jf.setLocationRelativeTo(null);
+        setHeroIcon();
+        setVilliansIcon();
 
     }
 
@@ -69,7 +65,7 @@ public class MapView {
         btnUnits[x][y].setEnabled(true);
     }
 
-    public void changeLableButton(int heroX, int heroY) {
+    public void changeIconButton(int heroX, int heroY) {
 
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++){
@@ -77,6 +73,44 @@ public class MapView {
                     btnUnits[i][j].setText("Hero");
                 else
                     btnUnits[i][j].setText("Villain");
+            }
+        }
+    }
+
+    public JButton[][] getBtnUnits() {
+        return btnUnits;
+    }
+
+    private void setHeroIcon() {
+
+        for (int i = 0; i < mapSize; i++) {
+            for (int j = 0; j < mapSize; j++) {
+                if (i == (mapSize / 2) && j == (mapSize / 2)) {
+                    try {
+                        Image img = ImageIO.read(getClass().getResource("/superman.png")); //TODO зробити нормальну картинку і правильно її присвоїти на кнопку
+                        Image newimg = img.getScaledInstance(btnUnits[i][j].getWidth(), btnUnits[i][j].getHeight(), Image.SCALE_DEFAULT);
+                        btnUnits[i][j].setIcon(new ImageIcon(newimg));
+                    } catch (Exception ex) {
+                        System.out.println(ex);
+                    }
+                }
+            }
+        }
+    }
+
+    private void setVilliansIcon() {
+
+        for (int i = 0; i < mapSize; i++) {
+            for (int j = 0; j < mapSize; j++) {
+                if (i != (mapSize / 2) || j != (mapSize / 2)) { //TODO правильно прописати умову розстановки картинок
+                    try {
+                        Image img = ImageIO.read(getClass().getResource("/villian.jpg")); //TODO зробити нормальну картинку і правильно її присвоїти на кнопку
+                        Image newimg = img.getScaledInstance(btnUnits[i][j].getWidth(), btnUnits[i][j].getHeight(), Image.SCALE_DEFAULT);
+                        btnUnits[i][j].setIcon(new ImageIcon(newimg));
+                    } catch (Exception ex) {
+                        System.out.println(ex);
+                    }
+                }
             }
         }
     }

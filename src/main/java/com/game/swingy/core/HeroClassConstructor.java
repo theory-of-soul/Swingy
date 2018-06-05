@@ -4,6 +4,7 @@ public class HeroClassConstructor {
 
     public void constructSamnite(Builder builder, String name) {
 
+        builder.setKindOfUnit(UnitType.HERO);
         builder.setName(name);
         builder.setHeroClass("Samnite");
         builder.setLevel(0);
@@ -19,6 +20,7 @@ public class HeroClassConstructor {
 
     public void constructSkissor(Builder builder, String name) {
 
+        builder.setKindOfUnit(UnitType.HERO);
         builder.setName(name);
         builder.setHeroClass("Skissor");
         builder.setLevel(0);
@@ -34,6 +36,7 @@ public class HeroClassConstructor {
 
     public void constructPeltasts(Builder builder, String name) {
 
+        builder.setKindOfUnit(UnitType.HERO);
         builder.setName(name);
         builder.setHeroClass("Peltasts");
         builder.setLevel(0);
@@ -44,6 +47,5 @@ public class HeroClassConstructor {
         Artefacts artefacts = new Artefacts(5,2,5);
         builder.setCoorditnates(new Coorditnates(2,2));
         builder.setArtefacts(artefacts);
-
     }
 }

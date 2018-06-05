@@ -1,6 +1,6 @@
 package com.game.swingy.core;
 
-public class HeroBuilder implements Builder {
+public class VillianBuilder implements Builder{
 
     private UnitType kindOfUnit;//TODO як краще визначати героя та ворога
     private String name;
@@ -12,6 +12,7 @@ public class HeroBuilder implements Builder {
     private int hitPoints;
     private Artefacts artefacts;
     private Coorditnates coorditnates;
+    static private int id;
 
     @Override
     public void setKindOfUnit(UnitType kindOfUnit) {
@@ -20,7 +21,7 @@ public class HeroBuilder implements Builder {
 
     @Override
     public void setName(String name) {
-        this.name = name;
+        this.name = name + Integer.toString(id++);
     }
 
     @Override
@@ -60,18 +61,12 @@ public class HeroBuilder implements Builder {
 
     @Override
     public void setCoorditnates(Coorditnates coorditnates) {
-        int mapSize = Map.getMap().getMapSize();
-        this.coorditnates = new Coorditnates(mapSize / 2, mapSize / 2);//TODO як визначити кординати героя якщо його ще немає, тобто ставити вручну а якщо герой готой то вираховувати з його рівня
+        this.coorditnates = coorditnates;
     }
 
-    public Hero createHero() {
-        return new Hero(kindOfUnit, name, heroClass, level, experience, attack, defense, hitPoints, artefacts, coorditnates);
-
-    }
     public Hero createEnemy() {
         return new Hero(kindOfUnit, name, heroClass, level, experience, attack, defense, hitPoints, artefacts, coorditnates);
 
     }
-
 
 }

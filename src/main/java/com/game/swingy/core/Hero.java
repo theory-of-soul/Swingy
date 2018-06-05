@@ -2,7 +2,7 @@ package com.game.swingy.core;
 
 public class Hero implements HeroActions{
 
-    protected int id;//TODO як краще визначати героя та ворога
+    protected UnitType kindOfUnit;//TODO як краще визначати героя та ворога
     protected String name;
     protected String heroClass;
     protected int level;
@@ -15,7 +15,8 @@ public class Hero implements HeroActions{
 
     static private int idCounter; //для унікальності id
 
-    public Hero(String name,
+    public Hero(UnitType kindOfUnit,
+                String name,
                 String heroClass,
                 int level,
                 int experience,
@@ -24,7 +25,7 @@ public class Hero implements HeroActions{
                 int hitPoints,
                 Artefacts artefacts,
                 Coorditnates coorditnates) {
-        this.id = nextId();
+        this.kindOfUnit = kindOfUnit;
         this.name = name;
         this.heroClass = heroClass;
         this.level = level;
@@ -78,18 +79,14 @@ public class Hero implements HeroActions{
                 this.coorditnates = new Coorditnates(x, y + 1);
                 break;
         }
-
-
-        System.out.println("d");
     }
 
-    private int nextId() {
-
-        return idCounter++;
+    public UnitType getKindOfUnit() {
+        return kindOfUnit;
     }
 
-    public int getId() {
-        return id;
+    public void setKindOfUnit(UnitType kindOfUnit) {
+        this.kindOfUnit = kindOfUnit;
     }
 
     public String getName() {
