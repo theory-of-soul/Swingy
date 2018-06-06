@@ -1,11 +1,11 @@
 package com.game.swingy.core;
 
-public class Coorditnates {
+public class Coordinates {
 
     private int x;
     private int y;
 
-    public Coorditnates(int x, int y) {
+    public Coordinates(int x, int y) {
         this.x = x;
         this.y = y;
     }

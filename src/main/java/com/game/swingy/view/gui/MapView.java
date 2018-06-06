@@ -28,9 +28,6 @@ public class MapView {
         panel.setSize(mapSize * 95,mapSize * 95);
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++){
-//                if (i == (mapSize / 2) && j == (mapSize / 2))
-                    btnUnits[i][j] = new JButton();
-//                else
                     btnUnits[i][j] = new JButton();
                 panel.add(btnUnits[i][j]);
             }
@@ -40,7 +37,6 @@ public class MapView {
         jf.setVisible(true);
         jf.setLocationRelativeTo(null);
         setHeroIcon();
-        setVilliansIcon();
 
     }
 
@@ -98,11 +94,11 @@ public class MapView {
         }
     }
 
-    private void setVilliansIcon() {
+    public void setVilliansIcon(int x, int y) {
 
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
-                if (i != (mapSize / 2) || j != (mapSize / 2)) { //TODO правильно прописати умову розстановки картинок
+                if (i == x && j == y) { //TODO правильно прописати умову розстановки картинок
                     try {
                         Image img = ImageIO.read(getClass().getResource("/villian.jpg")); //TODO зробити нормальну картинку і правильно її присвоїти на кнопку
                         Image newimg = img.getScaledInstance(btnUnits[i][j].getWidth(), btnUnits[i][j].getHeight(), Image.SCALE_DEFAULT);

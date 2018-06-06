@@ -1,8 +1,13 @@
-package com.game.swingy.core;
+package com.game.swingy.core.Enemy;
 
-public class VillianBuilder implements Builder{
+import com.game.swingy.core.Artefacts;
+import com.game.swingy.core.Builder;
+import com.game.swingy.core.Coordinates;
+import com.game.swingy.core.EnumUnitTypeField;
 
-    private UnitType kindOfUnit;//TODO як краще визначати героя та ворога
+public class VillianBuilder implements Builder {
+
+    private EnumUnitTypeField kindOfUnit;//TODO як краще визначати героя та ворога
     private String name;
     private String heroClass;
     private int level;
@@ -11,11 +16,11 @@ public class VillianBuilder implements Builder{
     private int defense;
     private int hitPoints;
     private Artefacts artefacts;
-    private Coorditnates coorditnates;
+    private Coordinates coordinates;
     static private int id;
 
     @Override
-    public void setKindOfUnit(UnitType kindOfUnit) {
+    public void setKindOfUnit(EnumUnitTypeField kindOfUnit) {
         this.kindOfUnit = kindOfUnit;
     }
 
@@ -60,12 +65,12 @@ public class VillianBuilder implements Builder{
     }
 
     @Override
-    public void setCoorditnates(Coorditnates coorditnates) {
-        this.coorditnates = coorditnates;
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
     }
 
     public Villian createEnemy() {
-        return new Villian(kindOfUnit, name, heroClass, level, experience, attack, defense, hitPoints, artefacts, coorditnates);
+        return new Villian(kindOfUnit, name, heroClass, level, experience, attack, defense, hitPoints, artefacts, coordinates);
 
     }
 

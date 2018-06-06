@@ -1,8 +1,10 @@
-package com.game.swingy.core;
+package com.game.swingy.core.Hero;
 
-public class Hero implements HeroActions{
+import com.game.swingy.core.*;
 
-    protected UnitType kindOfUnit;//TODO як краще визначати героя та ворога
+public class Hero extends Unit implements HeroActions {
+
+    protected EnumUnitTypeField kindOfUnit;//TODO як краще визначати героя та ворога
     protected String name;
     protected String heroClass;
     protected int level;
@@ -11,31 +13,22 @@ public class Hero implements HeroActions{
     protected int defense;
     protected int hitPoints;
     protected Artefacts artefacts;
-    protected Coorditnates coorditnates;
+    protected Coordinates coordinates;
 
-    public Hero(UnitType kindOfUnit,
-                String name,
-                String heroClass,
-                int level,
-                int experience,
-                int attack,
-                int defense,
-                int hitPoints,
-                Artefacts artefacts,
-                Coorditnates coorditnates) {
-        this.kindOfUnit = kindOfUnit;
-        this.name = name;
-        this.heroClass = heroClass;
-        this.level = level;
-        this.experience = experience;
-        this.attack = attack;
-        this.defense = defense;
-        this.hitPoints = hitPoints;
-        this.artefacts = artefacts;
-        this.coorditnates = coorditnates;
+    public Hero(EnumUnitTypeField kindOfUnit,
+                   String name,
+                   String heroClass,
+                   int level,
+                   int experience,
+                   int attack,
+                   int defense,
+                   int hitPoints,
+                   Artefacts artefacts,
+                   Coordinates coordinates) {
+        super(kindOfUnit, name, heroClass, level, experience, attack,
+                defense, hitPoints, artefacts, coordinates);
     }
 
-    @Override
     public void levelUp(int hitPoint, int experience) {
 
         if (experience >= 1000 && experience < 2450)
@@ -44,14 +37,13 @@ public class Hero implements HeroActions{
             this.level = 3;
     }
 
-    @Override
     public void experienceUp(int experience) {
 
         this.experience += experience;
     }
 
     @Override
-    public void attack(int enemyAttack) {
+    public void getAttack(int enemyAttack) {
 
         int damage = enemyAttack - this.defense;
         if (damage > 0)
@@ -59,31 +51,31 @@ public class Hero implements HeroActions{
     }
 
     @Override
-    public void move(Direction direction) {
+    public void move(EnumDirection enumDirection) {
 
-        int x = this.coorditnates.getX();
-        int y = this.coorditnates.getY();
-        switch (direction) {
+        int x = this.coordinates.getX();
+        int y = this.coordinates.getY();
+        switch (enumDirection) {
             case EAST:
-                this.coorditnates = new Coorditnates(x + 1, y);
+                this.coordinates = new Coordinates(x + 1, y);
                 break;
             case WEST:
-                this.coorditnates = new Coorditnates(x - 1, y);
+                this.coordinates = new Coordinates(x - 1, y);
                 break;
             case NORTH:
-                this.coorditnates = new Coorditnates(x, y - 1);
+                this.coordinates = new Coordinates(x, y - 1);
                 break;
             case SOUTH:
-                this.coorditnates = new Coorditnates(x, y + 1);
+                this.coordinates = new Coordinates(x, y + 1);
                 break;
         }
     }
 
-    public UnitType getKindOfUnit() {
+    public EnumUnitTypeField getKindOfUnit() {
         return kindOfUnit;
     }
 
-    public void setKindOfUnit(UnitType kindOfUnit) {
+    public void setKindOfUnit(EnumUnitTypeField kindOfUnit) {
         this.kindOfUnit = kindOfUnit;
     }
 
@@ -143,11 +135,11 @@ public class Hero implements HeroActions{
         this.hitPoints = hitPoints;
     }
 
-    public Coorditnates getCoorditnates() {
-        return coorditnates;
+    public Coordinates getCoordinates() {
+        return super.getCoordinates();
     }
 
-    public void setCoorditnates(Coorditnates coorditnates) {
-        this.coorditnates = coorditnates;
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
     }
 }

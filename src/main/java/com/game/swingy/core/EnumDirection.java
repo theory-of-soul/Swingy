@@ -1,6 +1,6 @@
 package com.game.swingy.core;
 
-public enum Direction {
+public enum EnumDirection {
 
     NORTH,
     EAST,

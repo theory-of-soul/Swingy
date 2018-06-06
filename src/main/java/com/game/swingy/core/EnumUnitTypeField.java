@@ -1,6 +1,6 @@
 package com.game.swingy.core;
 
-public enum UnitType {
+public enum EnumUnitTypeField {
     HERO,
     ENEMY,
     EMPTY;

@@ -6,7 +6,7 @@ import java.util.List;
 public class Map {
 
     private static Map map;
-    private List<Hero> observers = new ArrayList<Hero>();
+    private List<Unit> observers = new ArrayList<Unit>();
 
     private Map(){
 
@@ -19,18 +19,18 @@ public class Map {
         return map;
     }
 
-    public void register(Hero hero) {
+    public void register(Unit unit) {
 
-        if (observers.contains(hero))
+        if (observers.contains(unit))
             return;
-        observers.add(hero);
+        observers.add(unit);
     }
-    public void unregister(Hero hero) {
+    public void unregister(Unit unit) {
 
-        observers.remove(hero);
+        observers.remove(unit);
     }
 
-    public List<Hero> getObservers() {
+    public List<Unit> getObservers() {
         return observers;
     }
 

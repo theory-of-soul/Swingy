@@ -1,10 +1,15 @@
-package com.game.swingy.core;
+package com.game.swingy.core.Hero;
+
+import com.game.swingy.core.Artefacts;
+import com.game.swingy.core.Builder;
+import com.game.swingy.core.Coordinates;
+import com.game.swingy.core.EnumUnitTypeField;
 
 public class HeroClassConstructor {
 
     public void constructSamnite(Builder builder, String name) {
 
-        builder.setKindOfUnit(UnitType.HERO);
+        builder.setKindOfUnit(EnumUnitTypeField.HERO);
         builder.setName(name);
         builder.setHeroClass("Samnite");
         builder.setLevel(0);
@@ -13,14 +18,14 @@ public class HeroClassConstructor {
         builder.setDefense(15);
         builder.setHitPoints(100);
         Artefacts artefacts = new Artefacts(5,5,2);
-        builder.setCoorditnates(new Coorditnates(2,2));
+        builder.setCoordinates(new Coordinates(2,2));
         builder.setArtefacts(artefacts);
 
     }
 
     public void constructSkissor(Builder builder, String name) {
 
-        builder.setKindOfUnit(UnitType.HERO);
+        builder.setKindOfUnit(EnumUnitTypeField.HERO);
         builder.setName(name);
         builder.setHeroClass("Skissor");
         builder.setLevel(0);
@@ -29,14 +34,14 @@ public class HeroClassConstructor {
         builder.setDefense(10);
         builder.setHitPoints(100);
         Artefacts artefacts = new Artefacts(2,5,5);
-        builder.setCoorditnates(new Coorditnates(2,2));
+        builder.setCoordinates(new Coordinates(2,2));
         builder.setArtefacts(artefacts);
 
     }
 
     public void constructPeltasts(Builder builder, String name) {
 
-        builder.setKindOfUnit(UnitType.HERO);
+        builder.setKindOfUnit(EnumUnitTypeField.HERO);
         builder.setName(name);
         builder.setHeroClass("Peltasts");
         builder.setLevel(0);
@@ -45,7 +50,7 @@ public class HeroClassConstructor {
         builder.setDefense(20);
         builder.setHitPoints(100);
         Artefacts artefacts = new Artefacts(5,2,5);
-        builder.setCoorditnates(new Coorditnates(2,2));
+        builder.setCoordinates(new Coordinates(2,2));
         builder.setArtefacts(artefacts);
     }
 }

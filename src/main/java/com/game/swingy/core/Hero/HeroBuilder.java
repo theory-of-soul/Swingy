@@ -1,8 +1,13 @@
-package com.game.swingy.core;
+package com.game.swingy.core.Hero;
+
+import com.game.swingy.core.Artefacts;
+import com.game.swingy.core.Builder;
+import com.game.swingy.core.Coordinates;
+import com.game.swingy.core.EnumUnitTypeField;
 
 public class HeroBuilder implements Builder {
 
-    private UnitType kindOfUnit;//TODO як краще визначати героя та ворога
+    private EnumUnitTypeField kindOfUnit;//TODO як краще визначати героя та ворога
     private String name;
     private String heroClass;
     private int level;
@@ -11,10 +16,10 @@ public class HeroBuilder implements Builder {
     private int defense;
     private int hitPoints;
     private Artefacts artefacts;
-    private Coorditnates coorditnates;
+    private Coordinates coordinates;
 
     @Override
-    public void setKindOfUnit(UnitType kindOfUnit) {
+    public void setKindOfUnit(EnumUnitTypeField kindOfUnit) {
         this.kindOfUnit = kindOfUnit;
     }
 
@@ -59,19 +64,13 @@ public class HeroBuilder implements Builder {
     }
 
     @Override
-    public void setCoorditnates(Coorditnates coorditnates) {
+    public void setCoordinates(Coordinates coordinates) {
 //        int mapSize = Map.getMap().getMapSize();
-        this.coorditnates = new Coorditnates(/*mapSize /*/ 2, /*mapSize /*/ 2);//TODO як визначити кординати героя якщо його ще немає, тобто ставити вручну а якщо герой готой то вираховувати з його рівня
+        this.coordinates = new Coordinates(/*mapSize /*/ 2, /*mapSize /*/ 2);//TODO як визначити кординати героя якщо його ще немає, тобто ставити вручну а якщо герой готой то вираховувати з його рівня
     }
 
     public Hero createHero() {
-        return new Hero(kindOfUnit, name, heroClass, level, experience, attack, defense, hitPoints, artefacts, coorditnates);
+        return new Hero(kindOfUnit, name, heroClass, level, experience, attack, defense, hitPoints, artefacts, coordinates);
 
     }
-    public Hero createEnemy() {
-        return new Hero(kindOfUnit, name, heroClass, level, experience, attack, defense, hitPoints, artefacts, coorditnates);
-
-    }
-
-
 }
