@@ -28,6 +28,7 @@ public class CreateHeroController {
         System.out.println("Отработало создание героя");
         HeroClassConstructor heroClassConstructor = new HeroClassConstructor();
         HeroBuilder heroBuilder = new HeroBuilder();
+        VillianBuilder villianBuilder = new VillianBuilder();
 
 
 
@@ -53,6 +54,9 @@ public class CreateHeroController {
 
         }
         Map.getMap().register(heroBuilder.createHero());//TODO записувати героїв в БД, або в масив а потім в БД
+        for (int i = 12; i < 12; i++) {
+            Map.getMap().register((Hero) (villianBuilder.createEnemy()));
+        }
         //System.out.println(tyty.toString());
         //System.out.println(tyty.getHeroClass());
         WindowEvent windowEvent = new WindowEvent(createHeroView.getJf(), WindowEvent.WINDOW_CLOSING);

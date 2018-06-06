@@ -13,8 +13,6 @@ public class Hero implements HeroActions{
     protected Artefacts artefacts;
     protected Coorditnates coorditnates;
 
-    static private int idCounter; //для унікальності id
-
     public Hero(UnitType kindOfUnit,
                 String name,
                 String heroClass,

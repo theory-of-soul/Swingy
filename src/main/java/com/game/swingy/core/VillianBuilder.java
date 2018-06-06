@@ -64,8 +64,8 @@ public class VillianBuilder implements Builder{
         this.coorditnates = coorditnates;
     }
 
-    public Hero createEnemy() {
-        return new Hero(kindOfUnit, name, heroClass, level, experience, attack, defense, hitPoints, artefacts, coorditnates);
+    public Villian createEnemy() {
+        return new Villian(kindOfUnit, name, heroClass, level, experience, attack, defense, hitPoints, artefacts, coorditnates);
 
     }
 
