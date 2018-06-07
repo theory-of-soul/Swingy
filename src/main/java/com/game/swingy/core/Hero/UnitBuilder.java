@@ -1,11 +1,12 @@
-package com.game.swingy.core.Enemy;
+package com.game.swingy.core.Hero;
 
 import com.game.swingy.core.Artefacts;
 import com.game.swingy.core.Builder;
 import com.game.swingy.core.Coordinates;
+import com.game.swingy.core.Enemy.Villian;
 import com.game.swingy.core.EnumUnitTypeField;
 
-public class VillianBuilder implements Builder {
+public class UnitBuilder implements Builder {
 
     private EnumUnitTypeField kindOfUnit;//TODO як краще визначати героя та ворога
     private String name;
@@ -17,7 +18,6 @@ public class VillianBuilder implements Builder {
     private int hitPoints;
     private Artefacts artefacts;
     private Coordinates coordinates;
-    static private int id;
 
     @Override
     public void setKindOfUnit(EnumUnitTypeField kindOfUnit) {
@@ -26,7 +26,7 @@ public class VillianBuilder implements Builder {
 
     @Override
     public void setName(String name) {
-        this.name = name + Integer.toString(id++);
+        this.name = name;
     }
 
     @Override
@@ -66,12 +66,17 @@ public class VillianBuilder implements Builder {
 
     @Override
     public void setCoordinates(Coordinates coordinates) {
-        this.coordinates = coordinates;
+//        int mapSize = Map.getMap().getMapSize();
+        this.coordinates = coordinates;//TODO як визначити кординати героя якщо його ще немає, тобто ставити вручну а якщо герой готой то вираховувати з його рівня
     }
 
-    public Villian createEnemy() {
+    public Hero createHero() {
+        return new Hero(kindOfUnit, name, heroClass, level, experience, attack, defense, hitPoints, artefacts, coordinates);
+
+    }
+
+    public Villian createVillian() {
         return new Villian(kindOfUnit, name, heroClass, level, experience, attack, defense, hitPoints, artefacts, coordinates);
 
     }
-
 }

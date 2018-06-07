@@ -4,17 +4,6 @@ import com.game.swingy.core.*;
 
 public class Hero extends Unit implements HeroActions {
 
-    protected EnumUnitTypeField kindOfUnit;//TODO як краще визначати героя та ворога
-    protected String name;
-    protected String heroClass;
-    protected int level;
-    protected int experience;
-    protected int attack;
-    protected int defense;
-    protected int hitPoints;
-    protected Artefacts artefacts;
-    protected Coordinates coordinates;
-
     public Hero(EnumUnitTypeField kindOfUnit,
                    String name,
                    String heroClass,

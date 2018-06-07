@@ -116,26 +116,23 @@ public class MapController {
         return false;
     }
 
-    public void setRendomCoordinats() {
+    public void setRandomCoordinats() {
 
         Random random = new Random();
-        int length = Map.getMap().getObservers().size() - 1;
+        int length = Map.getMap().getObservers().size();
         List<Unit> units = Map.getMap().getObservers();
         for (int i = 1; i < length; i++) {
-            int x = random.nextInt(mapSize);
-            int y = random.nextInt(mapSize);
-            if (!checkXYInUnitList(units.get(i).getCoordinates().getX(), units.get(i).getCoordinates().getY())) {
-                if (checkXYInUnitList(units.get(i).getCoordinates().getX(), units.get(i).getCoordinates().getY())) {
-                    x = random.nextInt(mapSize);
-                    y = random.nextInt(mapSize);
+            if (units.get(i).getCoordinates().getX() == -1 && units.get(i).getCoordinates().getY() == -1) {
+                int x = random.nextInt(mapSize);
+                int y = random.nextInt(mapSize);
+                if (!checkXYInUnitList(units.get(i).getCoordinates().getX(), units.get(i).getCoordinates().getY())) {
+                    this.setRandomCoordinats();
+                } else {
+                    Coordinates coordinates = new Coordinates(x, y);
+                    units.get(i).setCoordinates(coordinates);
+                    mapView.setVilliansIcon(x, y);
                 }
             }
-            else {
-                Coordinates coordinates = new Coordinates(x, y);
-                units.get(i).setCoordinates(coordinates);
-                mapView.setVilliansIcon(x, y);
-            }
-
         }
     }
 }

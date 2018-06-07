@@ -5,7 +5,7 @@ import com.game.swingy.core.Coordinates;
 import com.game.swingy.core.EnumUnitTypeField;
 import com.game.swingy.core.Unit;
 
-public class Villian extends Unit{
+public class Villian extends Unit {
 
     public Villian(EnumUnitTypeField kindOfUnit,
                 String name,

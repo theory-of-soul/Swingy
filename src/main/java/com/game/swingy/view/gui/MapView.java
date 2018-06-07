@@ -79,7 +79,14 @@ public class MapView {
 
     private void setHeroIcon() {
 
-        for (int i = 0; i < mapSize; i++) {
+        try {
+            Image img = ImageIO.read(getClass().getResource("/superman.png")); //TODO зробити нормальну картинку і правильно її присвоїти на кнопку
+            Image newimg = img.getScaledInstance(btnUnits[mapSize / 2][mapSize / 2].getWidth(), btnUnits[mapSize / 2][mapSize / 2].getHeight(), Image.SCALE_DEFAULT);
+            btnUnits[mapSize / 2][mapSize / 2].setIcon(new ImageIcon(newimg));
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+        /*for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
                 if (i == (mapSize / 2) && j == (mapSize / 2)) {
                     try {
@@ -91,12 +98,20 @@ public class MapView {
                     }
                 }
             }
-        }
+        }*/
     }
 
     public void setVilliansIcon(int x, int y) {
 
-        for (int i = 0; i < mapSize; i++) {
+        try {
+            Image img = ImageIO.read(getClass().getResource("/villian.jpg")); //TODO зробити нормальну картинку і правильно її присвоїти на кнопку
+            Image newimg = img.getScaledInstance(btnUnits[x][y].getWidth(), btnUnits[x][y].getHeight(), Image.SCALE_DEFAULT);
+            btnUnits[x][y].setIcon(new ImageIcon(newimg));
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+
+        /*for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
                 if (i == x && j == y) { //TODO правильно прописати умову розстановки картинок
                     try {
@@ -108,6 +123,6 @@ public class MapView {
                     }
                 }
             }
-        }
+        }*/
     }
 }

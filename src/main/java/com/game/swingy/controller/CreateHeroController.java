@@ -1,9 +1,8 @@
 package com.game.swingy.controller;
 
 import com.game.swingy.core.*;
-import com.game.swingy.core.Enemy.VillianBuilder;
-import com.game.swingy.core.Hero.HeroBuilder;
-import com.game.swingy.core.Hero.HeroClassConstructor;
+import com.game.swingy.core.Hero.UnitBuilder;
+import com.game.swingy.core.Hero.UnitConstructor;
 import com.game.swingy.view.gui.CreateHeroView;
 
 import java.awt.event.ActionEvent;
@@ -29,11 +28,8 @@ public class CreateHeroController {
     private void onClickCreate() {
 
         System.out.println("Отработало создание героя");
-        HeroClassConstructor heroClassConstructor = new HeroClassConstructor();
-        HeroBuilder heroBuilder = new HeroBuilder();
-        VillianBuilder villianBuilder = new VillianBuilder();
-
-
+        UnitConstructor unitConstructor = new UnitConstructor();
+        UnitBuilder unitBuilder = new UnitBuilder();
 
         String nameHero;
         String selectedHeroClass;
@@ -46,19 +42,20 @@ public class CreateHeroController {
         switch (selectedHeroClass) {
 
             case ("Samnite") :
-                heroClassConstructor.constructSamnite(heroBuilder, nameHero);
+                unitConstructor.constructSamnite(unitBuilder, nameHero);
                 break;
             case ("Skissor") :
-                heroClassConstructor.constructSkissor(heroBuilder, nameHero);
+                unitConstructor.constructSkissor(unitBuilder, nameHero);
                 break;
             case ("Peltasts") :
-                heroClassConstructor.constructPeltasts(heroBuilder, nameHero);
+                unitConstructor.constructPeltasts(unitBuilder, nameHero);
                 break;
 
         }
-        Map.getMap().register(heroBuilder.createHero());//TODO записувати героїв в БД, або в масив а потім в БД
+        Map.getMap().register(unitBuilder.createHero());//TODO записувати героїв в БД, або в масив а потім в БД
         for (int i = 0; i < 12; i++) {
-            Map.getMap().register(villianBuilder.createEnemy());
+            unitConstructor.constructVillian(unitBuilder, Integer.toString(i));
+            Map.getMap().register(unitBuilder.createVillian());
         }
         //System.out.println(tyty.toString());
         //System.out.println(tyty.getHeroClass());
@@ -66,7 +63,7 @@ public class CreateHeroController {
         createHeroView.getJf().dispatchEvent(windowEvent);
         MapController mapController = new MapController(Map.getMap().getObservers());//TODO правильно передавати рівень героя;
         mapController.deAndActivatedbtnUnits();
-        mapController.setRendomCoordinats();
+        mapController.setRandomCoordinats();
         System.out.println("x=" + Map.getMap().getObservers().get(1).getName());
         System.out.println("x=" + Map.getMap().getObservers().get(2).getName());
     }
