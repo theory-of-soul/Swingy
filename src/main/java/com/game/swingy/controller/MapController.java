@@ -60,31 +60,31 @@ public class MapController {
 
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
-                if (x == i && y == j) {
-                    mapView.getBtnUnits()[i][j].addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            onClickHeroButton();
-                        }
-                    });
-                }
-                else if (checkXYInUnitList(i, j)) {
-                    mapView.getBtnUnits()[i][j].addActionListener(new ActionListener() {
-                        public void actionPerformed(ActionEvent e) {
-                            onClickVillainsButton();
-                        }
-                    });
-                }
-                else {
-                    mapView.getBtnUnits()[i][j].addActionListener(new EmptyButtonListener(i, j) {
-                        public void actionPerformed(ActionEvent e) {
-                            onClickEmptyButton(this.getCoordinateX(),this.getCoordinateY());
-                        }
-                    });
-                }
+                mapView.getBtnUnits()[i][j].addActionListener(new EmptyButtonListener(i, j) {
+                    public void actionPerformed(ActionEvent e) {
+                        clicButton(this.getCoordinateX(), this.getCoordinateY());
+                    }
+                });
             }
         }
     }
 
+    public void clicButton(int x, int y) {
+
+        int heroX = Map.getMap().getObservers().get(0).getCoordinates().getX();
+        int heroY = Map.getMap().getObservers().get(0).getCoordinates().getY();
+
+        if (heroX == x && heroY == y) {
+            onClickHeroButton();
+        }
+        else if (checkXYInUnitList(x, y) && heroX != x && heroY != y) {
+            onClickVillainsButton();
+        }
+        else {
+            onClickEmptyButton(x, y);
+        }
+
+    }
     public void onClickHeroButton() {
         //TODO показати вікно з даними про гравця
         System.out.println("On Hero");
@@ -110,7 +110,6 @@ public class MapController {
         mapView.setHeroIcon(toX, toY);
         Map.getMap().getObservers().get(0).getCoordinates().setX(toX);
         Map.getMap().getObservers().get(0).getCoordinates().setY(toY);
-        initMoveHero();
     }
 
     /*public void changeIconButton() {
