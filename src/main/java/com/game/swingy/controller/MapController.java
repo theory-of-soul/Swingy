@@ -1,6 +1,7 @@
 package com.game.swingy.controller;
 
 import com.game.swingy.core.Coordinates;
+import com.game.swingy.core.EmptyButtonListener;
 import com.game.swingy.core.Map;
 import com.game.swingy.core.Unit;
 import com.game.swingy.view.gui.HeroStatisticsView;
@@ -74,9 +75,9 @@ public class MapController {
                     });
                 }
                 else {
-                    mapView.getBtnUnits()[i][j].addActionListener(new ActionListener() {
+                    mapView.getBtnUnits()[i][j].addActionListener(new EmptyButtonListener(i, j) {
                         public void actionPerformed(ActionEvent e) {
-                            onClickEmptyButton(1,2);
+                            onClickEmptyButton(this.getCoordinateX(),this.getCoordinateY());
                         }
                     });
                 }
@@ -97,17 +98,19 @@ public class MapController {
     public void onClickEmptyButton(int x, int y) {
 
         System.out.println("Empty");
-//        changeHeroPosition(x, y);
-//        mapView.setHeroIcon(x, y);
+        changeHeroPosition(x, y);
+
     }
 
     public void changeHeroPosition(int toX, int toY) {
 
         int x = Map.getMap().getObservers().get(0).getCoordinates().getX();
         int y = Map.getMap().getObservers().get(0).getCoordinates().getY();
-
+        mapView.setEmptyIcon(x, y);
+        mapView.setHeroIcon(toX, toY);
         Map.getMap().getObservers().get(0).getCoordinates().setX(toX);
         Map.getMap().getObservers().get(0).getCoordinates().setY(toY);
+        initMoveHero();
     }
 
     /*public void changeIconButton() {

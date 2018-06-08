@@ -2,7 +2,6 @@ package com.game.swingy.view.gui;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.Border;
 import java.awt.*;
 
 public class HeroStatisticsView {
