@@ -1,6 +1,8 @@
 package com.game.swingy.view.gui;
 
 import javax.swing.*;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.Border;
 import java.awt.*;
 
 public class HeroStatisticsView {
@@ -31,7 +33,10 @@ public class HeroStatisticsView {
 
     public HeroStatisticsView() {
 
+
         createTools();
+        panelYourHero.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
+        panelMain.setBorder(new EtchedBorder(EtchedBorder.LOWERED));
         content = jf.getContentPane();
         content.add(panelMain);
         panelYourHero.add(labelYourHero);
@@ -52,7 +57,6 @@ public class HeroStatisticsView {
         panelArtefactsAll.add(labelHelm2);
         jf.setLayout(new FlowLayout());
         jf.add(panelYourHero);
-        jf.setLayout(new FlowLayout());
         jf.add(panelMain);
         jf.add(panelArtefacts);
         jf.add(panelArtefactsAll);
@@ -69,6 +73,7 @@ public class HeroStatisticsView {
 
         jf = new JFrame("Hero Statistics");
         labelYourHero = new JLabel("Your hero");
+        labelYourHero.setLocation(380,380);
         labelHeroName1 = new JLabel("Name");
         labelHeroName2 = new JLabel();
         labelHeroCass1 = new JLabel("Class");
