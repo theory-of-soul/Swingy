@@ -53,7 +53,7 @@ public class CreateHeroController {
 
         }
         Map.getMap().register(unitBuilder.createHero());//TODO записувати героїв в БД, або в масив а потім в БД
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 12; i++) {//TODO правильно визначати кількість ворогів
             unitConstructor.constructVillian(unitBuilder, Integer.toString(i));
             Map.getMap().register(unitBuilder.createVillian());
         }
@@ -64,7 +64,6 @@ public class CreateHeroController {
         MapController mapController = new MapController(Map.getMap().getObservers());//TODO правильно передавати рівень героя;
         mapController.deAndActivatedbtnUnits();
         mapController.setRandomCoordinats();
-        System.out.println("x=" + Map.getMap().getObservers().get(1).getName());
-        System.out.println("x=" + Map.getMap().getObservers().get(2).getName());
+        mapController.initMoveHero();
     }
 }

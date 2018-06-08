@@ -65,10 +65,17 @@ public class MapController {
                         }
                     });
                 }
-                else {
+                else if (checkXYInUnitList(i, j)) {
                     mapView.getBtnUnits()[i][j].addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
                             onClickVillainsButton();
+                        }
+                    });
+                }
+                else {
+                    mapView.getBtnUnits()[i][j].addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            onClickEmptyButton(1,2);
                         }
                     });
                 }
@@ -78,10 +85,18 @@ public class MapController {
 
     public void onClickHeroButton() {
         //TODO показати вікно з даними про гравця
+        System.out.println("On Hero");
     }
 
     public void onClickVillainsButton() {
+        System.out.println("On Villian");
+    }
 
+    public void onClickEmptyButton(int x, int y) {
+
+        System.out.println("Empty");
+//        changeHeroPosition(x, y);
+//        mapView.setHeroIcon(x, y);
     }
 
     public void changeHeroPosition(int toX, int toY) {
@@ -93,19 +108,15 @@ public class MapController {
         Map.getMap().getObservers().get(0).getCoordinates().setY(toY);
     }
 
-    public void changeLableButton() {
+    /*public void changeIconButton() {
 
         int x = Map.getMap().getObservers().get(0).getCoordinates().getX();
         int y = Map.getMap().getObservers().get(0).getCoordinates().getY();
 
         mapView.changeIconButton(x, y);
-    }
+    }*/
 
     static private boolean checkXYInUnitList(int x, int y) {
-
-        if (Map.getMap().getObservers().get(0).getCoordinates().getX() == x
-                && Map.getMap().getObservers().get(0).getCoordinates().getY() == y)
-            return false;
 
         List<Unit> unit = Map.getMap().getObservers();
         for (Unit one:
@@ -125,12 +136,13 @@ public class MapController {
             if (units.get(i).getCoordinates().getX() == -1 && units.get(i).getCoordinates().getY() == -1) {
                 int x = random.nextInt(mapSize);
                 int y = random.nextInt(mapSize);
-                if (!checkXYInUnitList(units.get(i).getCoordinates().getX(), units.get(i).getCoordinates().getY())) {
+                if (checkXYInUnitList(x, y)) {
                     this.setRandomCoordinats();
                 } else {
                     Coordinates coordinates = new Coordinates(x, y);
                     units.get(i).setCoordinates(coordinates);
                     mapView.setVilliansIcon(x, y);
+                    //mapView.btnUnitsActivated(x, y);//активація кнопок юнітів
                 }
             }
         }

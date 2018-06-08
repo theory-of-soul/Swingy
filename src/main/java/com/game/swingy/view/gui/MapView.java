@@ -20,7 +20,6 @@ public class MapView {
     public MapView(int mapSize) {
 
         this.mapSize = mapSize;
-        //heroClass = new String[] {"Samnite", "Skissor", "Peltasts"};
         btnUnits = new JButton[mapSize][mapSize];
         jf = new JFrame("Swingy");
         content = jf.getContentPane();
@@ -36,7 +35,7 @@ public class MapView {
         jf.setSize(mapSize * 95, mapSize * 95);
         jf.setVisible(true);
         jf.setLocationRelativeTo(null);
-        setHeroIcon();
+        setHeroIcon(mapSize / 2, mapSize / 2);
 
     }
 
@@ -61,28 +60,28 @@ public class MapView {
         btnUnits[x][y].setEnabled(true);
     }
 
-    public void changeIconButton(int heroX, int heroY) {
+   /* public void changeIconButton(int heroX, int heroY) {
 
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++){
                 if (i == heroX && j == heroY)
-                    btnUnits[i][j].setText("Hero");
+                    setHeroIcon(i, j);
                 else
                     btnUnits[i][j].setText("Villain");
             }
         }
-    }
+    }*/
 
     public JButton[][] getBtnUnits() {
         return btnUnits;
     }
 
-    private void setHeroIcon() {
+    public void setHeroIcon(int x, int y) {
 
         try {
             Image img = ImageIO.read(getClass().getResource("/superman.png")); //TODO зробити нормальну картинку і правильно її присвоїти на кнопку
-            Image newimg = img.getScaledInstance(btnUnits[mapSize / 2][mapSize / 2].getWidth(), btnUnits[mapSize / 2][mapSize / 2].getHeight(), Image.SCALE_DEFAULT);
-            btnUnits[mapSize / 2][mapSize / 2].setIcon(new ImageIcon(newimg));
+            Image newimg = img.getScaledInstance(btnUnits[x][y].getWidth(), btnUnits[mapSize / 2][mapSize / 2].getHeight(), Image.SCALE_DEFAULT);
+            btnUnits[x][y].setIcon(new ImageIcon(newimg));
         } catch (Exception ex) {
             System.out.println(ex);
         }
