@@ -6,7 +6,7 @@ public class Unit {
     protected String name;
     protected String heroClass;
     protected int level;
-    protected int experience;
+    protected int experience;//TODO прибрати звідси і добавити приватне поле герою
     protected int attack;
     protected int defense;
     protected int hitPoints;

@@ -3,6 +3,7 @@ package com.game.swingy.controller;
 import com.game.swingy.core.Coordinates;
 import com.game.swingy.core.Map;
 import com.game.swingy.core.Unit;
+import com.game.swingy.view.gui.HeroStatisticsView;
 import com.game.swingy.view.gui.MapView;
 
 import java.awt.event.ActionEvent;
@@ -86,6 +87,7 @@ public class MapController {
     public void onClickHeroButton() {
         //TODO показати вікно з даними про гравця
         System.out.println("On Hero");
+        HeroStatisticsView heroStatisticsView = new HeroStatisticsView();
     }
 
     public void onClickVillainsButton() {
