@@ -1,6 +1,7 @@
 package com.game.swingy.controller;
 
 import com.game.swingy.core.Coordinates;
+import com.game.swingy.core.GameButtonListener;
 import com.game.swingy.core.Map;
 import com.game.swingy.core.Unit;
 import com.game.swingy.view.gui.HeroStatisticsView;
@@ -74,9 +75,9 @@ public class MapController {
                     });
                 }
                 else {
-                    mapView.getBtnUnits()[i][j].addActionListener(new ActionListener() {
+                    mapView.getBtnUnits()[i][j].addActionListener(new GameButtonListener(i, j) {
                         public void actionPerformed(ActionEvent e) {
-                            onClickEmptyButton(1,2);
+                            onClickEmptyButton(this.getCoordinateX(),this.getCoordinateY());
                         }
                     });
                 }
@@ -97,6 +98,8 @@ public class MapController {
     public void onClickEmptyButton(int x, int y) {
 
         System.out.println("Empty");
+        System.out.println(x);
+        System.out.println(y);
 //        changeHeroPosition(x, y);
 //        mapView.setHeroIcon(x, y);
     }
