@@ -8,7 +8,6 @@ import com.game.swingy.view.gui.HeroStatisticsView;
 import com.game.swingy.view.gui.MapView;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Random;
 
@@ -37,16 +36,16 @@ public class MapController {
         System.out.println("x = " + x + "\ny = " + y);
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++){
-                if (i == (x - 1) && j == y && (x - 1) < mapSize && (x - 1) > 0)
-                    mapView.btnUnitsActivated(i, y);
-                else if (i == x && j == (y - 1) && (x - 1) < mapSize && (x - 1) > 0)
-                    mapView.btnUnitsActivated(i, y);
-                else if (i == x && j == (y + 1) && (x - 1) < mapSize && (x - 1) > 0)
-                    mapView.btnUnitsActivated(i, y);
-                else if (i == (x + 1) && j == (y) && (x - 1) < mapSize && (x - 1) > 0)
-                    mapView.btnUnitsActivated(i, y);
-                else if (i == x && j == y && (x - 1) < mapSize && (x - 1) > 0)
-                    mapView.btnUnitsActivated(i, y);
+                if (i == (x - 1) && j == y && (x - 1) < mapSize && (x - 1) >= 0)//рухаємся в гору
+                    mapView.btnUnitsActivated(i, j);
+                else if (i == (x + 1) && j == (y) && (x + 1) < mapSize && (x + 1) >= 0)
+                    mapView.btnUnitsActivated(i, j);
+                else if (i == x && j == (y - 1) && (y - 1) < mapSize && (y - 1) >= 0)//рухаємся в ліво
+                    mapView.btnUnitsActivated(i, j);
+                else if (i == x && j == (y + 1) && (y + 1) < mapSize && (y + 1) >= 0)//рухаємся в право
+                    mapView.btnUnitsActivated(i, j);
+                else if (i == x && j == y)
+                    mapView.btnUnitsActivated(i, j);
                 else
                     mapView.btnUnitsDeActivated(i,j);
             }
@@ -55,21 +54,18 @@ public class MapController {
 
     public void initMoveHero() {
 
-        int x = Map.getMap().getObservers().get(0).getCoordinates().getX();
-        int y = Map.getMap().getObservers().get(0).getCoordinates().getY();
-
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
                 mapView.getBtnUnits()[i][j].addActionListener(new EmptyButtonListener(i, j) {
                     public void actionPerformed(ActionEvent e) {
-                        clicButton(this.getCoordinateX(), this.getCoordinateY());
+                        onClickButton(this.getCoordinateX(), this.getCoordinateY());
                     }
                 });
             }
         }
     }
 
-    public void clicButton(int x, int y) {
+    public void onClickButton(int x, int y) {
 
         int heroX = Map.getMap().getObservers().get(0).getCoordinates().getX();
         int heroY = Map.getMap().getObservers().get(0).getCoordinates().getY();
@@ -77,7 +73,7 @@ public class MapController {
         if (heroX == x && heroY == y) {
             onClickHeroButton();
         }
-        else if (checkXYInUnitList(x, y) && heroX != x && heroY != y) {
+        else if (checkXYInUnitList(x, y)) {
             onClickVillainsButton();
         }
         else {
@@ -102,7 +98,7 @@ public class MapController {
 
     }
 
-    public void changeHeroPosition(int toX, int toY) {
+    private void changeHeroPosition(int toX, int toY) {
 
         int x = Map.getMap().getObservers().get(0).getCoordinates().getX();
         int y = Map.getMap().getObservers().get(0).getCoordinates().getY();
@@ -110,6 +106,8 @@ public class MapController {
         mapView.setHeroIcon(toX, toY);
         Map.getMap().getObservers().get(0).getCoordinates().setX(toX);
         Map.getMap().getObservers().get(0).getCoordinates().setY(toY);
+        deAndActivatedbtnUnits();
+        checkWinner();
     }
 
     /*public void changeIconButton() {
@@ -151,7 +149,14 @@ public class MapController {
             }
         }
     }
-}
+    private void checkWinner() {
 
-//TODO не првильно заповнюється герой і вороги. Помилка скоріше в віртуальному конструкторі
-//розібратися як її пофіксити і перевірити рендомайзер кординат
+        int x = Map.getMap().getObservers().get(0).getCoordinates().getX();
+        int y = Map.getMap().getObservers().get(0).getCoordinates().getY();
+
+        if (x == 0 || y == 0 || x == mapSize - 1 || y == mapSize - 1)
+            System.out.println("Mission completed");
+        //TODO вивсти відповідне вікно
+        //TODO визначити коли гра закінчиться якщо рівень дойшов до 6
+    }
+}
