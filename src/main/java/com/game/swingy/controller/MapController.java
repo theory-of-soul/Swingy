@@ -84,7 +84,8 @@ public class MapController {
     public void onClickHeroButton() {
         //TODO показати вікно з даними про гравця
         System.out.println("On Hero");
-        HeroStatisticsView heroStatisticsView = new HeroStatisticsView();
+        StatisticsController statisticsController = new StatisticsController();
+        statisticsController.setHeroFields();
     }
 
     public void onClickVillainsButton() {

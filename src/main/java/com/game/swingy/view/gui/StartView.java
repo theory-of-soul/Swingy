@@ -21,6 +21,7 @@ public class StartView {
         jf.setSize(400, 400);            	//setting size
         jf.setVisible(true);            	//setting frame visibility
         jf.setLocationRelativeTo(null);
+        jf.pack();
     }
 
     public JFrame getJf() {
