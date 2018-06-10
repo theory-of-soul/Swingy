@@ -7,14 +7,9 @@ import java.awt.*;
 public class MapView {
 
     private JFrame jf;
-    private JLabel labelName;
-    private JLabel labelHeroType;
     private JPanel panel;
     private Container content;
-    private JTextField nameHero;
     private JButton btnUnits[][];
-    private String[] heroClass;
-    private JComboBox<String> heroClassList;
     private int mapSize;
 
     public MapView(int mapSize) {
@@ -79,8 +74,9 @@ public class MapView {
     public void setHeroIcon(int x, int y) {
 
         try {
-            Image img = ImageIO.read(getClass().getResource("/superman.png")); //TODO зробити нормальну картинку і правильно її присвоїти на кнопку
-            Image newimg = img.getScaledInstance(btnUnits[x][y].getWidth(), btnUnits[mapSize / 2][mapSize / 2].getHeight(), Image.SCALE_DEFAULT);
+            Image img = ImageIO.read(getClass().getResource("/superman.png"));
+            Image newimg = img.getScaledInstance(btnUnits[x][y].getWidth(),
+                    btnUnits[mapSize / 2][mapSize / 2].getHeight(), Image.SCALE_DEFAULT);
             btnUnits[x][y].setIcon(new ImageIcon(newimg));
         } catch (Exception ex) {
             System.out.println(ex);
@@ -90,8 +86,9 @@ public class MapView {
     public void setVilliansIcon(int x, int y) {
 
         try {
-            Image img = ImageIO.read(getClass().getResource("/villian.jpg")); //TODO зробити нормальну картинку і правильно її присвоїти на кнопку
-            Image newimg = img.getScaledInstance(btnUnits[x][y].getWidth(), btnUnits[x][y].getHeight(), Image.SCALE_DEFAULT);
+            Image img = ImageIO.read(getClass().getResource("/villian.jpg"));
+            Image newimg = img.getScaledInstance(btnUnits[x][y].getWidth(),
+                    btnUnits[x][y].getHeight(), Image.SCALE_DEFAULT);
             btnUnits[x][y].setIcon(new ImageIcon(newimg));
         } catch (Exception ex) {
             System.out.println(ex);

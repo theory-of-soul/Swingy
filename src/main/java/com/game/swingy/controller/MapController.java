@@ -4,7 +4,6 @@ import com.game.swingy.core.Coordinates;
 import com.game.swingy.core.EmptyButtonListener;
 import com.game.swingy.core.Map;
 import com.game.swingy.core.Unit;
-import com.game.swingy.view.gui.HeroStatisticsView;
 import com.game.swingy.view.gui.MapView;
 
 import java.awt.event.ActionEvent;
@@ -74,7 +73,7 @@ public class MapController {
             onClickHeroButton();
         }
         else if (checkXYInUnitList(x, y)) {
-            onClickVillainsButton();
+            onClickVillainsButton(x, y);
         }
         else {
             onClickEmptyButton(x, y);
@@ -88,8 +87,10 @@ public class MapController {
         statisticsController.setHeroFields();
     }
 
-    public void onClickVillainsButton() {
+    public void onClickVillainsButton(int x, int y) {
         System.out.println("On Villian");
+        Unit villian = getVillian(x, y);
+        VillianAllertController villianAllertController = new VillianAllertController(villian);
     }
 
     public void onClickEmptyButton(int x, int y) {
@@ -119,6 +120,16 @@ public class MapController {
         mapView.changeIconButton(x, y);
     }*/
 
+    static private Unit getVillian(int x, int y) {
+
+        List<Unit> unit = Map.getMap().getObservers();
+        for (Unit one:
+                unit) {
+            if (one.getCoordinates().getX() == x && one.getCoordinates().getY() == y)
+                return one;
+        }
+        throw new Error("Not valid x and y coordinats");
+    }
     static private boolean checkXYInUnitList(int x, int y) {
 
         List<Unit> unit = Map.getMap().getObservers();

@@ -174,4 +174,12 @@ public class HeroStatisticsView {
     public JLabel getLabelDefense2() {
         return labelDefense2;
     }
+
+    public JFrame getJf() {
+        return jf;
+    }
+
+    public JButton getBtnOk() {
+        return btnOk;
+    }
 }

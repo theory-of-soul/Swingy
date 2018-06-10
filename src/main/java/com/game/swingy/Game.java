@@ -12,3 +12,4 @@ public class Game {
         starterController.initGame();
     }
 }
+//TODO при ударі ворог може промахнутися
