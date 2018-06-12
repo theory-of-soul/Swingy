@@ -7,6 +7,7 @@ public class Map {
 
     private static Map map;
     private List<Unit> observers = new ArrayList<Unit>();
+    private boolean isHeroMove = false;
 
     private Map(){
 
@@ -32,6 +33,14 @@ public class Map {
 
     public List<Unit> getObservers() {
         return observers;
+    }
+
+    public boolean isHeroMove() {
+        return isHeroMove;
+    }
+
+    public void setHeroMove(boolean heroMove) {
+        this.isHeroMove = heroMove;
     }
 
     /*public int getMapSize() {

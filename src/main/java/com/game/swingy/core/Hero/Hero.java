@@ -18,25 +18,30 @@ public class Hero extends Unit implements HeroActions {
                 defense, hitPoints, artefacts, coordinates);
     }
 
-    public void levelUp(int hitPoint, int experience) {
+    public void levelUp() {
 
         if (experience >= 1000 && experience < 2450)
+            this.level = 1;
+        else if (experience >= 2450 && experience < 4800)
             this.level = 2;
-        else if (experience >= 2450)
+        else if (experience >= 4800 && experience < 8050)
             this.level = 3;
+        else if (experience >= 8050 && experience < 12200)
+            this.level = 4;
+        else if (experience >= 12200)
+            this.level = 5;
+    }
+
+    public boolean isLevel5() {
+
+        if (level == 5)
+            return true;
+        return false;
     }
 
     public void experienceUp(int experience) {
 
         this.experience += experience;
-    }
-
-    @Override
-    public void getAttack(int enemyAttack) {
-
-        int damage = enemyAttack - this.defense;
-        if (damage > 0)
-            this.hitPoints -= damage;
     }
 
     @Override

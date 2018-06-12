@@ -35,6 +35,20 @@ public class Unit {
         this.coordinates = coordinates;
     }
 
+    public void takeDamage(int enemyAttack) {
+
+        int damage = enemyAttack - this.defense;
+        if (damage > 0)
+            this.hitPoints -= damage;
+    }
+
+    public boolean isLife() {
+
+        if (this.hitPoints <= 0)
+            return false;
+        return true;
+    }
+
     public EnumUnitTypeField getKindOfUnit() {
         return kindOfUnit;
     }

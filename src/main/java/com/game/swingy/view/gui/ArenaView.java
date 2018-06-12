@@ -3,10 +3,12 @@ package com.game.swingy.view.gui;
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 
 public class ArenaView {
 
     private JFrame jf;
+    private JFrame allertFrame;
     private JLabel lableVillian;
     private JLabel levellabel1;
     private JLabel levellabel2;
@@ -56,17 +58,18 @@ public class ArenaView {
     private void createTools() {
 
         jf = new JFrame("Swingy Arena");
+        allertFrame = new JFrame();
         createHeroTools();
         createVillianTools();
         turnLable = new JLabel("Your turn");
+        turnLable.setForeground(Color.RED);
         panelMain = new JPanel(new GridBagLayout());
         setHeroOnPanelHero();
         setVillianOnVillianPanel();
         setAllOnMainPanel();
         jf.setLayout(new FlowLayout());
         jf.add(panelMain);
-        jf.setSize(600, 500);
-        //jf.pack();
+        jf.setSize(580, 380);
         jf.setVisible(true);
         jf.setLocationRelativeTo(null);
     }
@@ -76,22 +79,22 @@ public class ArenaView {
         panelMain.add(labelYourHero, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.9, GridBagConstraints.NORTH,
                 GridBagConstraints.HORIZONTAL, new Insets(5,5,5,5),
                 0,0));
-        panelMain.add(turnLable, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.9, GridBagConstraints.NORTH,
+        panelMain.add(turnLable, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.9, GridBagConstraints.NORTH,
                 GridBagConstraints.HORIZONTAL, new Insets(5,5,5,5),
                 0,0));
-        panelMain.add(lableVillian, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.9, GridBagConstraints.NORTH,
+        panelMain.add(lableVillian, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.9, GridBagConstraints.NORTH,
                 GridBagConstraints.HORIZONTAL, new Insets(5,5,5,5),
                 0,0));
-        panelMain.add(heroBtn, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.9, GridBagConstraints.NORTH,
+        panelMain.add(heroBtn, new GridBagConstraints(0, 1, 1, 1, 0.0, 0.9, GridBagConstraints.NORTH,
                 GridBagConstraints.HORIZONTAL, new Insets(5,5,5,5),
                 0,0));
-        panelMain.add(villianBtn, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.9, GridBagConstraints.NORTH,
+        panelMain.add(villianBtn, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.9, GridBagConstraints.NORTH,
                 GridBagConstraints.HORIZONTAL, new Insets(5,5,5,5),
                 0,0));
         panelMain.add(panelHero, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.9, GridBagConstraints.NORTH,
                 GridBagConstraints.HORIZONTAL, new Insets(5,5,5,5),
                 0,0));
-        panelMain.add(panelVillian, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.9, GridBagConstraints.NORTH,
+        panelMain.add(panelVillian, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.9, GridBagConstraints.NORTH,
                 GridBagConstraints.HORIZONTAL, new Insets(5,5,5,5),
                 0,0));
     }
@@ -210,8 +213,9 @@ public class ArenaView {
 
         panelHero = new JPanel();
         heroBtn = new JButton("Hero");
+        heroBtn.setEnabled(false);
         panelHero.setLayout(new GridBagLayout());
-        labelYourHero = new JLabel("Your hero");
+        labelYourHero = new JLabel("HERO");
         labelYourHero.setHorizontalAlignment(JLabel.CENTER);
         labelHeroName1 = new JLabel("Name");
         labelHeroName2 = new JLabel();
@@ -244,8 +248,9 @@ public class ArenaView {
 
         panelVillian = new JPanel();
         panelVillian.setLayout(new GridBagLayout());
-        villianBtn = new JButton("Villian");
-        lableVillian = new JLabel();
+        villianBtn = new JButton("Villain");
+        lableVillian = new JLabel("VILLAIN");
+        lableVillian.setHorizontalAlignment(JLabel.CENTER);
         levellabel1 = new JLabel("Villian level");
         levellabel2 = new JLabel();
         attackLabel1 = new JLabel("Villian attack");
@@ -266,6 +271,38 @@ public class ArenaView {
 
         jf.setVisible(true);
         jf.setLocationRelativeTo(null);*/
+    }
+
+    public void showLoser() {
+
+        JOptionPane.showMessageDialog(allertFrame,
+                "Good buy, LOSER!!!");
+    }
+
+    public void showWinner() {
+
+        JOptionPane.showMessageDialog(allertFrame,
+                "Perfectly!!!\nYou are winner");
+    }
+
+    public void showWinView() {
+
+        JOptionPane.showMessageDialog(allertFrame,
+                "You win villain");
+    }
+
+    public void exitWindow() {
+
+        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        WindowEvent windowEvent = new WindowEvent(jf, WindowEvent.WINDOW_CLOSING);
+        jf.dispatchEvent(windowEvent);
+    }
+
+    public void closeWindow() {
+
+        jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        WindowEvent windowEvent = new WindowEvent(jf, WindowEvent.WINDOW_CLOSING);
+        jf.dispatchEvent(windowEvent);
     }
 
     public JFrame getJf() {

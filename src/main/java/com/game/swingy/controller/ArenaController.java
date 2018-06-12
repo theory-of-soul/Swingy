@@ -1,21 +1,89 @@
 package com.game.swingy.controller;
 
+import com.game.swingy.core.Hero.Hero;
 import com.game.swingy.core.Map;
 import com.game.swingy.core.Unit;
 import com.game.swingy.view.gui.ArenaView;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class ArenaController {
 
+    private int villainHealth;
     private ArenaView arenaView;
+    private Unit villain;
 
     public ArenaController(Unit villian) {
 
+        this.villain = villian;
+        villainHealth = this.villain.getHitPoints();
         arenaView = new ArenaView();
-        setTextOnVillianBtn(villian);
-        setTextOnHeroBtn();
+        setTextOnVillianLable(villian);
+        setTextOnHeroLable();
+        initBtn();
     }
 
-    private void setTextOnVillianBtn(Unit villian) {
+    private void initBtn() {
+
+        arenaView.getHeroBtn().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onClickHero();
+            }
+        });
+        arenaView.getVillianBtn().addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onClickVillain();
+            }
+        });
+    }
+
+    private void onClickVillain() {
+
+        int attack = Map.getMap().getObservers().get(0).getAttack() +
+                Map.getMap().getObservers().get(0).getArtefacts().getWeapon();
+        villain.takeDamage(attack);
+        setTextOnVillianLable(villain);
+        arenaView.getTurnLable().setText("Villain turn");
+        arenaView.getVillianBtn().setEnabled(false);
+        arenaView.getHeroBtn().setEnabled(true);
+        if (!villain.isLife())
+            villainDie();
+    }
+
+    private void villainDie() {
+
+        Hero hero = (Hero)Map.getMap().getObservers().get(0);
+        hero.experienceUp(this.villainHealth);
+        hero.levelUp();
+        if (hero.isLevel5()) {
+            arenaView.showWinner();
+            arenaView.exitWindow();
+        }
+        arenaView.showWinView();
+        arenaView.closeWindow();
+        Map.getMap().setHeroMove(true);
+        //TODO перевести гравця на клітку ворога і видалити ворога
+
+    }
+
+    private void onClickHero() {
+
+        int attack = villain.getAttack() + villain.getArtefacts().getWeapon();
+        Unit hero = (Map.getMap().getObservers().get(0));
+        hero.takeDamage(attack);
+        setTextOnHeroLable();
+        arenaView.getTurnLable().setText("Your turn");
+        arenaView.getHeroBtn().setEnabled(false);
+        arenaView.getVillianBtn().setEnabled(true);
+        if (!hero.isLife()) {
+            arenaView.showLoser();
+            arenaView.exitWindow();
+        }
+
+    }
+
+    private void setTextOnVillianLable(Unit villian) {
 
         int level = villian.getLevel();
         int attack = villian.getAttack();
@@ -34,7 +102,7 @@ public class ArenaController {
         arenaView.getHealthLabel2().setText(Integer.toString(health));
     }
 
-    private void setTextOnHeroBtn() {
+    private void setTextOnHeroLable() {
 
         String name = Map.getMap().getObservers().get(0).getName();
         String heroClass = Map.getMap().getObservers().get(0).getHeroClass();

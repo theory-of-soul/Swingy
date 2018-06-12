@@ -64,7 +64,7 @@ public class UnitConstructor {
         builder.setAttack(5);
         builder.setDefense(5);
         builder.setHitPoints(40);
-        Artefacts artefacts = new Artefacts(2, 2, 2);
+        Artefacts artefacts = new Artefacts(20, 2, 2);
         builder.setCoordinates(new Coordinates(-1, -1));
         builder.setArtefacts(artefacts);
 

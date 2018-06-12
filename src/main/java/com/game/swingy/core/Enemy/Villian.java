@@ -20,4 +20,5 @@ public class Villian extends Unit {
         super(kindOfUnit, name, heroClass, level, experience, attack,
               defense, hitPoints, artefacts, coordinates);
     }
+
 }

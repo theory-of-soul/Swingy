@@ -1,6 +1,5 @@
 package com.game.swingy.controller;
 
-import com.game.swingy.core.FightButtonListener;
 import com.game.swingy.core.Unit;
 import com.game.swingy.view.gui.VillianAllertView;
 
@@ -11,9 +10,11 @@ import java.util.Random;
 public class VillianAllertController {
 
     private VillianAllertView villianAllertView;
+    private Unit villain;
 
     public VillianAllertController(Unit villian) {
 
+        this.villain = villian;
         villianAllertView = new VillianAllertView();
         setTextOnBtnLabel(villian);
         initBtn(villian);
@@ -26,9 +27,9 @@ public class VillianAllertController {
                 onClickRun();
             }
         });
-        villianAllertView.getFightBtn().addActionListener(new FightButtonListener(villian) {
+        villianAllertView.getFightBtn().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                onClickFight(this.getVillian());
+                onClickFight();
             }
         });
     }
@@ -44,20 +45,27 @@ public class VillianAllertController {
     private void onClickRunYes() {
 
         Random random = new Random();
-        if (random.nextBoolean())
-            System.out.println("true");//TODO визвати кнопку fight
+        if (random.nextBoolean()) {
+            System.out.println("true");
+            villianAllertView.showDisLucky();
+            villianAllertView.closeWindow();
+            ArenaController arenaController = new ArenaController(this.villain);
+
+        }
         else {
             System.out.println("false");
+            villianAllertView.showLucky();
             villianAllertView.closeWindow();
         }
     }
 
-    private void onClickFight(Unit villian) {
+    private void onClickFight() {
 
         System.out.println("Fight");
         if (villianAllertView.showFightAllert() == 0) {
             System.out.println("yes");
-            ArenaController arenaController = new ArenaController(villian);
+            ArenaController arenaController = new ArenaController(this.villain);
+            villianAllertView.closeWindow();
         }
     }
 

@@ -91,6 +91,8 @@ public class MapController {
         System.out.println("On Villian");
         Unit villian = getVillian(x, y);
         VillianAllertController villianAllertController = new VillianAllertController(villian);
+        if (Map.getMap().isHeroMove())
+            changeHeroPosition(x, y);
     }
 
     public void onClickEmptyButton(int x, int y) {
@@ -109,6 +111,7 @@ public class MapController {
         Map.getMap().getObservers().get(0).getCoordinates().setX(toX);
         Map.getMap().getObservers().get(0).getCoordinates().setY(toY);
         deAndActivatedbtnUnits();
+        Map.getMap().setHeroMove(false);
         checkWinner();
     }
 
@@ -166,9 +169,10 @@ public class MapController {
         int x = Map.getMap().getObservers().get(0).getCoordinates().getX();
         int y = Map.getMap().getObservers().get(0).getCoordinates().getY();
 
-        if (x == 0 || y == 0 || x == mapSize - 1 || y == mapSize - 1)
+        if (x == 0 || y == 0 || x == mapSize - 1 || y == mapSize - 1) {
             System.out.println("Mission completed");
+        }
         //TODO вивсти відповідне вікно
-        //TODO визначити коли гра закінчиться якщо рівень дойшов до 6
+        //TODO перерисувати карту з новими ворогами
     }
 }

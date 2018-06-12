@@ -114,6 +114,18 @@ public class VillianAllertView {
 
     }
 
+    public void showLucky() {
+
+        JOptionPane.showMessageDialog(allertFrame,
+                "That's you lucky");
+    }
+
+    public void showDisLucky() {
+
+        JOptionPane.showMessageDialog(allertFrame,
+                "That's you don't lucky");
+    }
+
     public int showFightAllert() {
 
         return JOptionPane.showConfirmDialog(
