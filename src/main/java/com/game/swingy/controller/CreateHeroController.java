@@ -63,7 +63,7 @@ public class CreateHeroController {
         createHeroView.getJf().dispatchEvent(windowEvent);
         MapController mapController = new MapController(Map.getMap().getObservers());//TODO правильно передавати рівень героя;
         mapController.deAndActivatedbtnUnits();
-        mapController.setRandomCoordinats();
+        mapController.setRandomCoordinates();
         mapController.initMoveHero();
     }
 }

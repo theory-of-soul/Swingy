@@ -13,7 +13,7 @@ public class Map {
 
     }
 
-    public static Map getMap(){
+    public static Map getMap() {
 
         if(map == null)
             map = new Map();
@@ -26,6 +26,7 @@ public class Map {
             return;
         observers.add(unit);
     }
+
     public void unregister(Unit unit) {
 
         observers.remove(unit);
@@ -35,13 +36,6 @@ public class Map {
         return observers;
     }
 
-    public boolean isHeroMove() {
-        return isHeroMove;
-    }
-
-    public void setHeroMove(boolean heroMove) {
-        this.isHeroMove = heroMove;
-    }
 
     /*public int getMapSize() {
         if(map == null)

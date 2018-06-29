@@ -89,10 +89,8 @@ public class MapController {
 
     public void onClickVillainsButton(int x, int y) {
         System.out.println("On Villian");
-        Unit villian = getVillian(x, y);
-        VillianAllertController villianAllertController = new VillianAllertController(villian);
-        if (Map.getMap().isHeroMove())
-            changeHeroPosition(x, y);
+        Unit villain = getVillain(x, y);
+        VillainAlertController villainAlertController = new VillainAlertController(villain, this);
     }
 
     public void onClickEmptyButton(int x, int y) {
@@ -100,6 +98,11 @@ public class MapController {
         System.out.println("Empty");
         changeHeroPosition(x, y);
 
+    }
+
+    public void heroKilledVillain(Unit villain) {
+        changeHeroPosition(villain.getCoordinates().getX(), villain.getCoordinates().getY());
+        Map.getMap().unregister(villain);
     }
 
     private void changeHeroPosition(int toX, int toY) {
@@ -111,7 +114,6 @@ public class MapController {
         Map.getMap().getObservers().get(0).getCoordinates().setX(toX);
         Map.getMap().getObservers().get(0).getCoordinates().setY(toY);
         deAndActivatedbtnUnits();
-        Map.getMap().setHeroMove(false);
         checkWinner();
     }
 
@@ -123,16 +125,16 @@ public class MapController {
         mapView.changeIconButton(x, y);
     }*/
 
-    static private Unit getVillian(int x, int y) {
+    static private Unit getVillain(int x, int y) {
 
         List<Unit> unit = Map.getMap().getObservers();
-        for (Unit one:
-                unit) {
+        for (Unit one: unit) {
             if (one.getCoordinates().getX() == x && one.getCoordinates().getY() == y)
                 return one;
         }
-        throw new Error("Not valid x and y coordinats");
+        throw new Error("Not valid x and y coordinates");
     }
+
     static private boolean checkXYInUnitList(int x, int y) {
 
         List<Unit> unit = Map.getMap().getObservers();
@@ -144,7 +146,7 @@ public class MapController {
         return false;
     }
 
-    public void setRandomCoordinats() {
+    public void setRandomCoordinates() {
 
         Random random = new Random();
         int length = Map.getMap().getObservers().size();
@@ -154,7 +156,7 @@ public class MapController {
                 int x = random.nextInt(mapSize);
                 int y = random.nextInt(mapSize);
                 if (checkXYInUnitList(x, y)) {
-                    this.setRandomCoordinats();
+                    this.setRandomCoordinates();
                 } else {
                     Coordinates coordinates = new Coordinates(x, y);
                     units.get(i).setCoordinates(coordinates);

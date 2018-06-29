@@ -7,14 +7,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-public class VillianAllertController {
+public class VillainAlertController {
 
     private VillianAllertView villianAllertView;
+    private MapController mapController;
     private Unit villain;
 
-    public VillianAllertController(Unit villian) {
+    public VillainAlertController(Unit villian, MapController mapController) {
 
         this.villain = villian;
+        this.mapController = mapController;
         villianAllertView = new VillianAllertView();
         setTextOnBtnLabel(villian);
         initBtn(villian);
@@ -49,7 +51,7 @@ public class VillianAllertController {
             System.out.println("true");
             villianAllertView.showDisLucky();
             villianAllertView.closeWindow();
-            ArenaController arenaController = new ArenaController(this.villain);
+            ArenaController arenaController = new ArenaController(this.villain, this.mapController);
 
         }
         else {
@@ -64,7 +66,7 @@ public class VillianAllertController {
         System.out.println("Fight");
         if (villianAllertView.showFightAllert() == 0) {
             System.out.println("yes");
-            ArenaController arenaController = new ArenaController(this.villain);
+            ArenaController arenaController = new ArenaController(this.villain, this.mapController);
             villianAllertView.closeWindow();
         }
     }

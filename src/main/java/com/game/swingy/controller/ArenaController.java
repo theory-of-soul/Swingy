@@ -11,12 +11,14 @@ import java.awt.event.ActionListener;
 public class ArenaController {
 
     private int villainHealth;
+    private MapController mapController;
     private ArenaView arenaView;
     private Unit villain;
 
-    public ArenaController(Unit villian) {
+    public ArenaController(Unit villian, MapController mapController) {
 
         this.villain = villian;
+        this.mapController = mapController;
         villainHealth = this.villain.getHitPoints();
         arenaView = new ArenaView();
         setTextOnVillianLable(villian);
@@ -62,7 +64,7 @@ public class ArenaController {
         }
         arenaView.showWinView();
         arenaView.closeWindow();
-        Map.getMap().setHeroMove(true);
+        mapController.heroKilledVillain(this.villain);
         //TODO перевести гравця на клітку ворога і видалити ворога
 
     }
