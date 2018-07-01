@@ -8,7 +8,7 @@ import com.game.swingy.core.EnumUnitTypeField;
 
 public class UnitBuilder implements Builder {
 
-    private EnumUnitTypeField kindOfUnit;//TODO як краще визначати героя та ворога
+    private EnumUnitTypeField kindOfUnit;
     private String name;
     private String heroClass;
     private int level;
@@ -76,7 +76,7 @@ public class UnitBuilder implements Builder {
     }
 
     public Villian createVillian() {
-        return new Villian(kindOfUnit, name, heroClass, level, experience, attack, defense, hitPoints, artefacts, coordinates);
+        return new Villian(kindOfUnit, name, heroClass, level, attack, defense, hitPoints, artefacts, coordinates);
 
     }
 }

@@ -4,6 +4,8 @@ import com.game.swingy.core.*;
 
 public class Hero extends Unit implements HeroActions {
 
+    private int experience;
+
     public Hero(EnumUnitTypeField kindOfUnit,
                    String name,
                    String heroClass,
@@ -14,8 +16,9 @@ public class Hero extends Unit implements HeroActions {
                    int hitPoints,
                    Artefacts artefacts,
                    Coordinates coordinates) {
-        super(kindOfUnit, name, heroClass, level, experience, attack,
+        super(kindOfUnit, name, heroClass, level, attack,
                 defense, hitPoints, artefacts, coordinates);
+        this.experience = experience;
     }
 
     public void levelUp() {

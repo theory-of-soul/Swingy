@@ -50,20 +50,18 @@ public class CreateHeroController {
             case ("Peltasts") :
                 unitConstructor.constructPeltasts(unitBuilder, nameHero);
                 break;
-
         }
         Map.getMap().register(unitBuilder.createHero());//TODO записувати героїв в БД, або в масив а потім в БД
-        for (int i = 0; i < 12; i++) {//TODO правильно визначати кількість ворогів
+        /*for (int i = 0; i < 12; i++) {//TODO правильно визначати кількість ворогів
             unitConstructor.constructVillian(unitBuilder, Integer.toString(i));
             Map.getMap().register(unitBuilder.createVillian());
-        }
-        //System.out.println(tyty.toString());
-        //System.out.println(tyty.getHeroClass());
-        WindowEvent windowEvent = new WindowEvent(createHeroView.getJf(), WindowEvent.WINDOW_CLOSING);
-        createHeroView.getJf().dispatchEvent(windowEvent);
-        MapController mapController = new MapController(Map.getMap().getObservers());//TODO правильно передавати рівень героя;
-        mapController.deAndActivatedbtnUnits();
-        mapController.setRandomCoordinats();
-        mapController.initMoveHero();
+        }*/
+        Map.getMap().fillListOfVillain();
+        createHeroView.closeWindow();
+        //MapController mapController = new MapController(Map.getMap().getObservers());//TODO правильно передавати рівень героя;
+        /*mapController.deAndActivatedbtnUnits();
+        mapController.setRandomCoordinates();
+        mapController.initMoveHero();*/
+
     }
 }

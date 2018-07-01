@@ -7,19 +7,22 @@ import com.game.swingy.view.gui.ArenaView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 public class ArenaController {
 
     private int villainHealth;
     private ArenaView arenaView;
+    private MapController mapController;
     private Unit villain;
 
-    public ArenaController(Unit villian) {
+    public ArenaController(Unit villian, MapController mapController) {
 
         this.villain = villian;
+        this.mapController = mapController;
         villainHealth = this.villain.getHitPoints();
         arenaView = new ArenaView();
-        setTextOnVillianLable(villian);
+        setTextOnVillainLable(villian);
         setTextOnHeroLable();
         initBtn();
     }
@@ -43,7 +46,7 @@ public class ArenaController {
         int attack = Map.getMap().getObservers().get(0).getAttack() +
                 Map.getMap().getObservers().get(0).getArtefacts().getWeapon();
         villain.takeDamage(attack);
-        setTextOnVillianLable(villain);
+        setTextOnVillainLable(villain);
         arenaView.getTurnLable().setText("Villain turn");
         arenaView.getVillianBtn().setEnabled(false);
         arenaView.getHeroBtn().setEnabled(true);
@@ -62,16 +65,20 @@ public class ArenaController {
         }
         arenaView.showWinView();
         arenaView.closeWindow();
-        Map.getMap().setHeroMove(true);
-        //TODO перевести гравця на клітку ворога і видалити ворога
-
+        mapController.heroKilledVillain(this.villain);
+        //TODO артефакти присвоїти герою
     }
 
     private void onClickHero() {
 
         int attack = villain.getAttack() + villain.getArtefacts().getWeapon();
         Unit hero = (Map.getMap().getObservers().get(0));
-        hero.takeDamage(attack);
+
+        Random random = new Random();
+        if (random.nextInt(5) == 0)
+            arenaView.showMissAttack();
+        else
+            hero.takeDamage(attack);
         setTextOnHeroLable();
         arenaView.getTurnLable().setText("Your turn");
         arenaView.getHeroBtn().setEnabled(false);
@@ -83,14 +90,14 @@ public class ArenaController {
 
     }
 
-    private void setTextOnVillianLable(Unit villian) {
+    private void setTextOnVillainLable(Unit villain) {
 
-        int level = villian.getLevel();
-        int attack = villian.getAttack();
-        int defense = villian.getDefense();
-        int weapon = villian.getArtefacts().getWeapon();
-        int armor = villian.getArtefacts().getArmor();
-        int health = villian.getHitPoints();
+        int level = villain.getLevel();
+        int attack = villain.getAttack();
+        int defense = villain.getDefense();
+        int weapon = villain.getArtefacts().getWeapon();
+        int armor = villain.getArtefacts().getArmor();
+        int health = villain.getHitPoints();
 
         arenaView.getLevellabel2().setText(Integer.toString(level));
         arenaView.getAttackLabel2().setText(Integer.toString(attack) +
@@ -104,15 +111,16 @@ public class ArenaController {
 
     private void setTextOnHeroLable() {
 
-        String name = Map.getMap().getObservers().get(0).getName();
-        String heroClass = Map.getMap().getObservers().get(0).getHeroClass();
-        int level = Map.getMap().getObservers().get(0).getLevel();
-        int experience = Map.getMap().getObservers().get(0).getExperience();
-        int attack = Map.getMap().getObservers().get(0).getAttack();
-        int defense = Map.getMap().getObservers().get(0).getDefense();
-        int hitPoints = Map.getMap().getObservers().get(0).getHitPoints();
-        int weapon = Map.getMap().getObservers().get(0).getArtefacts().getWeapon();
-        int armor = Map.getMap().getObservers().get(0).getArtefacts().getArmor();
+        Hero hero = (Hero)Map.getMap().getObservers().get(0);
+        String name = hero.getName();
+        String heroClass = hero.getHeroClass();
+        int level = hero.getLevel();
+        int experience = hero.getExperience();
+        int attack = hero.getAttack();
+        int defense = hero.getDefense();
+        int hitPoints = hero.getHitPoints();
+        int weapon = hero.getArtefacts().getWeapon();
+        int armor = hero.getArtefacts().getArmor();
 
         arenaView.getLabelHeroName2().setText(name);
         arenaView.getLabelHeroCass2().setText(heroClass);

@@ -291,6 +291,12 @@ public class ArenaView {
                 "You win villain");
     }
 
+    public void showMissAttack() {
+
+        JOptionPane.showMessageDialog(allertFrame,
+                "Something went wrong");
+    }
+
     public void exitWindow() {
 
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -11,13 +11,12 @@ public class Villian extends Unit {
                 String name,
                 String heroClass,
                 int level,
-                int experience,
                 int attack,
                 int defense,
                 int hitPoints,
                 Artefacts artefacts,
                 Coordinates coordinates) {
-        super(kindOfUnit, name, heroClass, level, experience, attack,
+        super(kindOfUnit, name, heroClass, level, attack,
               defense, hitPoints, artefacts, coordinates);
     }
 

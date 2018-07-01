@@ -6,7 +6,7 @@ public class Unit {
     protected String name;
     protected String heroClass;
     protected int level;
-    protected int experience;//TODO прибрати звідси і добавити приватне поле герою
+    //TODO прибрати звідси і добавити приватне поле герою
     protected int attack;
     protected int defense;
     protected int hitPoints;
@@ -17,7 +17,6 @@ public class Unit {
                    String name,
                    String heroClass,
                    int level,
-                   int experience,
                    int attack,
                    int defense,
                    int hitPoints,
@@ -27,7 +26,6 @@ public class Unit {
         this.name = name;
         this.heroClass = heroClass;
         this.level = level;
-        this.experience = experience;
         this.attack = attack;
         this.defense = defense;
         this.hitPoints = hitPoints;
@@ -79,14 +77,6 @@ public class Unit {
 
     public void setLevel(int level) {
         this.level = level;
-    }
-
-    public int getExperience() {
-        return experience;
-    }
-
-    public void setExperience(int experience) {
-        this.experience = experience;
     }
 
     public int getAttack() {

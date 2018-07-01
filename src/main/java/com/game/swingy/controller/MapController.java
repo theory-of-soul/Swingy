@@ -21,6 +21,9 @@ public class MapController {
 
         mapSize = getMapSize(level);
         mapView = new MapView(mapSize);
+        deAndActivatedbtnUnits();
+        setRandomCoordinates();
+        initMoveHero();
     }
 
     static private int getMapSize(int heroLevel){
@@ -81,7 +84,6 @@ public class MapController {
 
     }
     public void onClickHeroButton() {
-        //TODO показати вікно з даними про гравця
         System.out.println("On Hero");
         StatisticsController statisticsController = new StatisticsController();
         statisticsController.setHeroFields();
@@ -89,11 +91,12 @@ public class MapController {
 
     public void onClickVillainsButton(int x, int y) {
         System.out.println("On Villian");
-        Unit villian = getVillian(x, y);
-        VillianAllertController villianAllertController = new VillianAllertController(villian);
-        if (Map.getMap().isHeroMove())
-            changeHeroPosition(x, y);
+        Unit villain = getVillian(x, y);
+        VillianAllertController villianAllertController = new
+                VillianAllertController(villain,this);
+        System.out.println("yes on villain button");
     }
+
 
     public void onClickEmptyButton(int x, int y) {
 
@@ -102,7 +105,7 @@ public class MapController {
 
     }
 
-    private void changeHeroPosition(int toX, int toY) {
+    public void changeHeroPosition(int toX, int toY) {
 
         int x = Map.getMap().getObservers().get(0).getCoordinates().getX();
         int y = Map.getMap().getObservers().get(0).getCoordinates().getY();
@@ -111,8 +114,13 @@ public class MapController {
         Map.getMap().getObservers().get(0).getCoordinates().setX(toX);
         Map.getMap().getObservers().get(0).getCoordinates().setY(toY);
         deAndActivatedbtnUnits();
-        Map.getMap().setHeroMove(false);
-        checkWinner();
+        ischeckWinner();
+    }
+
+    public void heroKilledVillain(Unit villain) {
+
+        changeHeroPosition(villain.getCoordinates().getX(), villain.getCoordinates().getY());
+        Map.getMap().unregister(villain);
     }
 
     /*public void changeIconButton() {
@@ -126,8 +134,7 @@ public class MapController {
     static private Unit getVillian(int x, int y) {
 
         List<Unit> unit = Map.getMap().getObservers();
-        for (Unit one:
-                unit) {
+        for (Unit one: unit) {
             if (one.getCoordinates().getX() == x && one.getCoordinates().getY() == y)
                 return one;
         }
@@ -136,15 +143,14 @@ public class MapController {
     static private boolean checkXYInUnitList(int x, int y) {
 
         List<Unit> unit = Map.getMap().getObservers();
-        for (Unit one:
-             unit) {
+        for (Unit one: unit) {
             if (one.getCoordinates().getX() == x && one.getCoordinates().getY() == y)
                 return true;
         }
         return false;
     }
 
-    public void setRandomCoordinats() {
+    public void setRandomCoordinates() {
 
         Random random = new Random();
         int length = Map.getMap().getObservers().size();
@@ -154,7 +160,7 @@ public class MapController {
                 int x = random.nextInt(mapSize);
                 int y = random.nextInt(mapSize);
                 if (checkXYInUnitList(x, y)) {
-                    this.setRandomCoordinats();
+                    this.setRandomCoordinates();
                 } else {
                     Coordinates coordinates = new Coordinates(x, y);
                     units.get(i).setCoordinates(coordinates);
@@ -164,15 +170,29 @@ public class MapController {
             }
         }
     }
-    private void checkWinner() {
+
+    private void ischeckWinner() {
 
         int x = Map.getMap().getObservers().get(0).getCoordinates().getX();
         int y = Map.getMap().getObservers().get(0).getCoordinates().getY();
 
-        if (x == 0 || y == 0 || x == mapSize - 1 || y == mapSize - 1) {
+        if (x == 0 || y == 0 || x == getMapSize() - 1 ||
+                y == getMapSize() - 1) {
             System.out.println("Mission completed");
+            mapView.showMissionCompletedView();
+            Map.getMap().deleteListofUnit();
+            mapView.closeWindow();
+            mapView = null;
+            Map.getMap().fillListOfVillain();
         }
-        //TODO вивсти відповідне вікно
         //TODO перерисувати карту з новими ворогами
+    }
+
+    public void closeMapView() {
+        mapView.closeWindow();
+    }
+
+    public int getMapSize() {
+        return mapSize;
     }
 }
