@@ -58,6 +58,7 @@ public class ArenaView {
     private void createTools() {
 
         jf = new JFrame("Swingy Arena");
+        jf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         allertFrame = new JFrame();
         createHeroTools();
         createVillianTools();
@@ -255,7 +256,7 @@ public class ArenaView {
         levellabel2 = new JLabel();
         attackLabel1 = new JLabel("Villian attack");
         attackLabel2 = new JLabel();
-        defenseLabel1 = new JLabel("Villian degense");
+        defenseLabel1 = new JLabel("Villian defense");
         defenseLabel2 = new JLabel();
         artefactsLabel = new JLabel("Villian artefacts");
         weaponLabel1 = new JLabel("Points plus to attack");
@@ -273,6 +274,21 @@ public class ArenaView {
         jf.setLocationRelativeTo(null);*/
     }
 
+    public int showArtefacts() {
+
+        Object[] options = {"weapon",
+                "armor",
+                "helm"};
+        return JOptionPane.showOptionDialog(allertFrame,
+                "select one of the three artifacts",
+                "Dropped artefacts",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[2]);
+    }
+
     public void showLoser() {
 
         JOptionPane.showMessageDialog(allertFrame,
@@ -285,7 +301,7 @@ public class ArenaView {
                 "Perfectly!!!\nYou are winner");
     }
 
-    public void showWinView() {
+    public void showWinVillainView() {
 
         JOptionPane.showMessageDialog(allertFrame,
                 "You win villain");

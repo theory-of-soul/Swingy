@@ -1,5 +1,6 @@
 package com.game.swingy.controller;
 
+import com.game.swingy.core.Artefacts;
 import com.game.swingy.core.Hero.Hero;
 import com.game.swingy.core.Map;
 import com.game.swingy.core.Unit;
@@ -57,16 +58,46 @@ public class ArenaController {
     private void villainDie() {
 
         Hero hero = (Hero)Map.getMap().getObservers().get(0);
+        Random random = new Random();
         hero.experienceUp(this.villainHealth);
         hero.levelUp();
         if (hero.isLevel5()) {
             arenaView.showWinner();
             arenaView.exitWindow();
         }
-        arenaView.showWinView();
+        arenaView.showWinVillainView();
         arenaView.closeWindow();
         mapController.heroKilledVillain(this.villain);
-        //TODO артефакти присвоїти герою
+        if (random.nextInt(2) == 0)
+            setArtefacts();
+        mapController.getMapViewFrame().setVisible(true);
+    }
+
+    private void setArtefacts() {
+
+        Artefacts artefacts;
+        Hero hero = (Hero)Map.getMap().getObservers().get(0);
+        switch (arenaView.showArtefacts()) {
+            case 0:
+                System.out.println("weapon");
+                artefacts = new Artefacts(villain.getArtefacts().getWeapon(),
+                        hero.getArtefacts().getArmor(), hero.getArtefacts().getHelm());
+                hero.setArtefacts(artefacts);
+                break;
+            case 1:
+                System.out.println("weapon");
+                artefacts = new Artefacts(hero.getArtefacts().getWeapon(),
+                        villain.getArtefacts().getArmor(), hero.getArtefacts().getHelm());
+                hero.setArtefacts(artefacts);
+                break;
+            case 2:
+                System.out.println("weapon");
+                artefacts = new Artefacts(hero.getArtefacts().getWeapon(),
+                        hero.getArtefacts().getArmor(), villain.getArtefacts().getHelm());
+                hero.setHitPoints(hero.getHitPoints() + villain.getArtefacts().getHelm());
+                hero.setArtefacts(artefacts);
+                break;
+        }
     }
 
     private void onClickHero() {

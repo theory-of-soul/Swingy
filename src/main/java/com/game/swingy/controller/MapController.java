@@ -6,6 +6,7 @@ import com.game.swingy.core.Map;
 import com.game.swingy.core.Unit;
 import com.game.swingy.view.gui.MapView;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.List;
 import java.util.Random;
@@ -31,7 +32,7 @@ public class MapController {
         return (heroLevel - 1) * 5 + 10 - (heroLevel % 2);
     }
 
-    public void deAndActivatedbtnUnits() {
+    private void deAndActivatedbtnUnits() {
 
         int x = Map.getMap().getObservers().get(0).getCoordinates().getX();
         int y = Map.getMap().getObservers().get(0).getCoordinates().getY();
@@ -54,7 +55,7 @@ public class MapController {
         }
     }
 
-    public void initMoveHero() {
+    private void initMoveHero() {
 
         for (int i = 0; i < mapSize; i++) {
             for (int j = 0; j < mapSize; j++) {
@@ -92,6 +93,7 @@ public class MapController {
     public void onClickVillainsButton(int x, int y) {
         System.out.println("On Villian");
         Unit villain = getVillian(x, y);
+        mapView.getJf().setVisible(false);
         VillianAllertController villianAllertController = new
                 VillianAllertController(villain,this);
         System.out.println("yes on villain button");
@@ -114,7 +116,7 @@ public class MapController {
         Map.getMap().getObservers().get(0).getCoordinates().setX(toX);
         Map.getMap().getObservers().get(0).getCoordinates().setY(toY);
         deAndActivatedbtnUnits();
-        ischeckWinner();
+        isCheckWinner();
     }
 
     public void heroKilledVillain(Unit villain) {
@@ -171,7 +173,7 @@ public class MapController {
         }
     }
 
-    private void ischeckWinner() {
+    private void isCheckWinner() {
 
         int x = Map.getMap().getObservers().get(0).getCoordinates().getX();
         int y = Map.getMap().getObservers().get(0).getCoordinates().getY();
@@ -185,7 +187,10 @@ public class MapController {
             mapView = null;
             Map.getMap().fillListOfVillain();
         }
-        //TODO перерисувати карту з новими ворогами
+    }
+
+    public JFrame getMapViewFrame() {
+        return mapView.getJf();
     }
 
     public void closeMapView() {

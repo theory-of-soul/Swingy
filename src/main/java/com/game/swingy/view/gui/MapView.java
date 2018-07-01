@@ -114,4 +114,8 @@ public class MapView {
 
         btnUnits[x][y].setIcon(null);
     }
+
+    public JFrame getJf() {
+        return jf;
+    }
 }
