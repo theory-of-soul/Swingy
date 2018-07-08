@@ -1,7 +1,6 @@
 package com.game.swingy.core.DataBase;
 
 //STEP 1. Import required packages
-import com.game.swingy.core.Map.EnumUnitTypeField;
 import com.game.swingy.core.Unit.Hero.Hero;
 import com.game.swingy.core.Unit.Unit;
 
