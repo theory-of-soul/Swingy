@@ -1,7 +1,7 @@
 package com.game.swingy.controller;
 
-import com.game.swingy.core.Hero.Hero;
-import com.game.swingy.core.Map;
+import com.game.swingy.core.Unit.Hero.Hero;
+import com.game.swingy.core.Map.Map;
 import com.game.swingy.view.gui.HeroStatisticsView;
 
 import java.awt.event.ActionEvent;

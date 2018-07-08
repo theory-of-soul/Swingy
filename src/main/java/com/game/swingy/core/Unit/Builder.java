@@ -1,4 +1,6 @@
-package com.game.swingy.core;
+package com.game.swingy.core.Unit;
+
+import com.game.swingy.core.Map.EnumUnitTypeField;
 
 public interface Builder {
 
@@ -10,7 +12,7 @@ public interface Builder {
     public void setAttack(int attack);
     public void setDefense(int defense);
     public void setHitPoints(int hitPoints);
-    public void setArtefacts(Artefacts  artefacts);
+    public void setArtefacts(Artefacts artefacts);
     public void setCoordinates(Coordinates coordinates);
 
 }

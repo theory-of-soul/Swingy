@@ -1,8 +1,9 @@
-package com.game.swingy.core;
+package com.game.swingy.core.Map;
 
 import com.game.swingy.controller.MapController;
-import com.game.swingy.core.Hero.UnitBuilder;
-import com.game.swingy.core.Hero.UnitConstructor;
+import com.game.swingy.core.Unit.Unit;
+import com.game.swingy.core.Unit.UnitBuilder;
+import com.game.swingy.core.Unit.UnitConstructor;
 
 import java.util.ArrayList;
 import java.util.List;

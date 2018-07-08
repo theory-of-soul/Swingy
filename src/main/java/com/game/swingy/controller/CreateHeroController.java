@@ -1,13 +1,13 @@
 package com.game.swingy.controller;
 
-import com.game.swingy.core.*;
-import com.game.swingy.core.Hero.UnitBuilder;
-import com.game.swingy.core.Hero.UnitConstructor;
+import com.game.swingy.core.Map.Map;
+import com.game.swingy.core.Unit.Coordinates;
+import com.game.swingy.core.Unit.UnitBuilder;
+import com.game.swingy.core.Unit.UnitConstructor;
 import com.game.swingy.view.gui.CreateHeroView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 
 public class CreateHeroController {
 

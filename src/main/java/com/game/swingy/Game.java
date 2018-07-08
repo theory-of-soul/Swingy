@@ -1,6 +1,7 @@
 package com.game.swingy;
 
 import com.game.swingy.controller.StarterController;
+import com.game.swingy.core.DataBase.DbMySQL;
 import com.game.swingy.view.gui.StartView;
 
 public class Game {
@@ -10,6 +11,8 @@ public class Game {
         StartView startView = new StartView();
         StarterController starterController = new StarterController(startView);
         starterController.initGame();
+        DbMySQL dbMySQL = new DbMySQL();
+
     }
 }
 //TODO при ударі ворог може промахнутися

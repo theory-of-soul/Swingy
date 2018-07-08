@@ -1,6 +1,6 @@
 package com.game.swingy.controller;
 
-import com.game.swingy.core.Unit;
+import com.game.swingy.core.Unit.Unit;
 import com.game.swingy.view.gui.VillianAllertView;
 
 import java.awt.event.ActionEvent;

@@ -59,7 +59,7 @@
                     <driver>com.mysql.jdbc.Driver</driver>
                     <url>jdbc:mysql://localhost:3306/hmkcode</url>
                     <username>root</username>
-                    <password></password>
+                    <password>root</password>
                 </configuration>
 
                 <!-- ( 4 ) phase, goal & SQL (command or file) -->

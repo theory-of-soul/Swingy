@@ -1,4 +1,6 @@
-package com.game.swingy.core;
+package com.game.swingy.core.Unit;
+
+import com.game.swingy.core.Map.EnumUnitTypeField;
 
 public class Unit {
 
@@ -6,7 +8,6 @@ public class Unit {
     protected String name;
     protected String heroClass;
     protected int level;
-    //TODO прибрати звідси і добавити приватне поле герою
     protected int attack;
     protected int defense;
     protected int hitPoints;

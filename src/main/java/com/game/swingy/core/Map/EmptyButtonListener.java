@@ -1,4 +1,4 @@
-package com.game.swingy.core;
+package com.game.swingy.core.Map;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

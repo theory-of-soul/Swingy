@@ -1,9 +1,9 @@
 package com.game.swingy.controller;
 
-import com.game.swingy.core.Coordinates;
-import com.game.swingy.core.EmptyButtonListener;
-import com.game.swingy.core.Map;
-import com.game.swingy.core.Unit;
+import com.game.swingy.core.Map.EmptyButtonListener;
+import com.game.swingy.core.Map.Map;
+import com.game.swingy.core.Unit.Coordinates;
+import com.game.swingy.core.Unit.Unit;
 import com.game.swingy.view.gui.MapView;
 
 import javax.swing.*;
@@ -91,7 +91,7 @@ public class MapController {
     }
 
     public void onClickVillainsButton(int x, int y) {
-        System.out.println("On Villian");
+        System.out.println("On Villain");
         Unit villain = getVillian(x, y);
         mapView.getJf().setVisible(false);
         VillianAllertController villianAllertController = new
@@ -199,5 +199,9 @@ public class MapController {
 
     public int getMapSize() {
         return mapSize;
+    }
+
+    public MapView getMapView() {
+        return mapView;
     }
 }

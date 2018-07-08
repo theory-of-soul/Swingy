@@ -252,13 +252,13 @@ public class ArenaView {
         villianBtn = new JButton("Villain");
         lableVillian = new JLabel("VILLAIN");
         lableVillian.setHorizontalAlignment(JLabel.CENTER);
-        levellabel1 = new JLabel("Villian level");
+        levellabel1 = new JLabel("Villain level");
         levellabel2 = new JLabel();
-        attackLabel1 = new JLabel("Villian attack");
+        attackLabel1 = new JLabel("Villain attack");
         attackLabel2 = new JLabel();
-        defenseLabel1 = new JLabel("Villian defense");
+        defenseLabel1 = new JLabel("Villain defense");
         defenseLabel2 = new JLabel();
-        artefactsLabel = new JLabel("Villian artefacts");
+        artefactsLabel = new JLabel("Villain artefacts");
         weaponLabel1 = new JLabel("Points plus to attack");
         weaponLabel2 = new JLabel();
         armorLabel1 = new JLabel("Points plus to defense");

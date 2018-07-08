@@ -1,9 +1,6 @@
-package com.game.swingy.core.Hero;
+package com.game.swingy.core.Unit;
 
-import com.game.swingy.core.Artefacts;
-import com.game.swingy.core.Builder;
-import com.game.swingy.core.Coordinates;
-import com.game.swingy.core.EnumUnitTypeField;
+import com.game.swingy.core.Map.EnumUnitTypeField;
 
 public class UnitConstructor {
 
@@ -58,7 +55,7 @@ public class UnitConstructor {
 
         builder.setKindOfUnit(EnumUnitTypeField.ENEMY);
         builder.setName(name);
-        builder.setHeroClass("Enemy");
+        builder.setHeroClass("Villain");
         builder.setLevel(0);
         builder.setAttack(5);
         builder.setDefense(5);
@@ -73,7 +70,7 @@ public class UnitConstructor {
 
         builder.setKindOfUnit(EnumUnitTypeField.ENEMY);
         builder.setName(name);
-        builder.setHeroClass("Enemy");
+        builder.setHeroClass("Villain");
         builder.setLevel(1);
         builder.setAttack(10);
         builder.setDefense(10);
@@ -88,7 +85,7 @@ public class UnitConstructor {
 
         builder.setKindOfUnit(EnumUnitTypeField.ENEMY);
         builder.setName(name);
-        builder.setHeroClass("Enemy");
+        builder.setHeroClass("Villain");
         builder.setLevel(2);
         builder.setAttack(15);
         builder.setDefense(15);
@@ -103,7 +100,7 @@ public class UnitConstructor {
 
         builder.setKindOfUnit(EnumUnitTypeField.ENEMY);
         builder.setName(name);
-        builder.setHeroClass("Enemy");
+        builder.setHeroClass("Villain");
         builder.setLevel(3);
         builder.setAttack(20);
         builder.setDefense(20);
@@ -118,7 +115,7 @@ public class UnitConstructor {
 
         builder.setKindOfUnit(EnumUnitTypeField.ENEMY);
         builder.setName(name);
-        builder.setHeroClass("Enemy");
+        builder.setHeroClass("Villain");
         builder.setLevel(4);
         builder.setAttack(30);
         builder.setDefense(30);

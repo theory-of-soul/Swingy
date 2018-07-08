@@ -1,29 +1,29 @@
 package com.game.swingy.controller;
 
-import com.game.swingy.core.Artefacts;
-import com.game.swingy.core.Hero.Hero;
-import com.game.swingy.core.Map;
-import com.game.swingy.core.Unit;
+import com.game.swingy.core.Map.Map;
+import com.game.swingy.core.Unit.Artefacts;
+import com.game.swingy.core.Unit.Hero.Hero;
+import com.game.swingy.core.Unit.Unit;
 import com.game.swingy.view.gui.ArenaView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-public class ArenaController {
+class ArenaController {
 
     private int villainHealth;
     private ArenaView arenaView;
     private MapController mapController;
     private Unit villain;
 
-    public ArenaController(Unit villian, MapController mapController) {
+    ArenaController(Unit villain, MapController mapController) {
 
-        this.villain = villian;
+        this.villain = villain;
         this.mapController = mapController;
         villainHealth = this.villain.getHitPoints();
         arenaView = new ArenaView();
-        setTextOnVillainLable(villian);
+        setTextOnVillainLable(villain);
         setTextOnHeroLable();
         initBtn();
     }
@@ -67,10 +67,11 @@ public class ArenaController {
         }
         arenaView.showWinVillainView();
         arenaView.closeWindow();
-        mapController.heroKilledVillain(this.villain);
-        if (random.nextInt(2) == 0)
+        //if (random.nextInt(2) == 0)
             setArtefacts();
-        mapController.getMapViewFrame().setVisible(true);
+        mapController.heroKilledVillain(this.villain);
+        if (mapController.getMapView() != null)
+            mapController.getMapViewFrame().setVisible(true);
     }
 
     private void setArtefacts() {
@@ -85,13 +86,13 @@ public class ArenaController {
                 hero.setArtefacts(artefacts);
                 break;
             case 1:
-                System.out.println("weapon");
+                System.out.println("armor");
                 artefacts = new Artefacts(hero.getArtefacts().getWeapon(),
                         villain.getArtefacts().getArmor(), hero.getArtefacts().getHelm());
                 hero.setArtefacts(artefacts);
                 break;
             case 2:
-                System.out.println("weapon");
+                System.out.println("helm");
                 artefacts = new Artefacts(hero.getArtefacts().getWeapon(),
                         hero.getArtefacts().getArmor(), villain.getArtefacts().getHelm());
                 hero.setHitPoints(hero.getHitPoints() + villain.getArtefacts().getHelm());
