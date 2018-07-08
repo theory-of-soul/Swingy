@@ -11,8 +11,6 @@ public class Game {
         StartView startView = new StartView();
         StarterController starterController = new StarterController(startView);
         starterController.initGame();
-        DbMySQL dbMySQL = new DbMySQL();
-
     }
 }
 //TODO при ударі ворог може промахнутися

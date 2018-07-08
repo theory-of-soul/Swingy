@@ -3,6 +3,7 @@ package com.game.swingy.view.gui;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class MapView {

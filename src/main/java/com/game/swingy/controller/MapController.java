@@ -1,5 +1,6 @@
 package com.game.swingy.controller;
 
+import com.game.swingy.core.DataBase.DbMySQL;
 import com.game.swingy.core.Map.EmptyButtonListener;
 import com.game.swingy.core.Map.Map;
 import com.game.swingy.core.Unit.Coordinates;
@@ -8,6 +9,8 @@ import com.game.swingy.view.gui.MapView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 import java.util.Random;
 
@@ -15,6 +18,8 @@ public class MapController {
 
     private int mapSize;
     private MapView mapView;
+    DbMySQL dbMySQL;
+
 
     public MapController(List<Unit> unit) {
 
@@ -22,9 +27,11 @@ public class MapController {
 
         mapSize = getMapSize(level);
         mapView = new MapView(mapSize);
+        dbMySQL = new DbMySQL();
         deAndActivatedbtnUnits();
         setRandomCoordinates();
         initMoveHero();
+        initCloseLisener();
     }
 
     static private int getMapSize(int heroLevel){
@@ -65,6 +72,23 @@ public class MapController {
                     }
                 });
             }
+        }
+    }
+
+    private void initCloseLisener() {
+
+        mapView.getJf().addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent we) {
+                fillDataBase();
+            }
+        });
+    }
+
+    private void fillDataBase() {
+
+        List<Unit> unit = Map.getMap().getObservers();
+        for (Unit one: unit) {
+            dbMySQL.fillUnitTable(one);
         }
     }
 
