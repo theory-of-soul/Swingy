@@ -35,7 +35,7 @@ public class CreateHeroController {
         String selectedHeroClass;
 
 
-        Coordinates coordinates = new Coordinates(0,0);
+        //Coordinates coordinates = new Coordinates(0,0);
         nameHero = createHeroView.getNameHero().getText();
         selectedHeroClass = (String) createHeroView.getHeroClassList().getSelectedItem();
 
@@ -51,8 +51,8 @@ public class CreateHeroController {
                 unitConstructor.constructPeltasts(unitBuilder, nameHero);
                 break;
         }
-        Map.getMap().register(unitBuilder.createHero());//TODO записувати героїв в БД, або в масив а потім в БД
-        /*for (int i = 0; i < 12; i++) {//TODO правильно визначати кількість ворогів
+        Map.getMap().register(unitBuilder.createHero());
+        /*for (int i = 0; i < 12; i++) {//
             unitConstructor.constructVillian(unitBuilder, Integer.toString(i));
             Map.getMap().register(unitBuilder.createVillian());
         }*/

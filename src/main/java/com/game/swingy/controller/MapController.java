@@ -86,8 +86,10 @@ public class MapController {
 
                 if (confirmed == 0) {
                     fillDataBase();
+                    Map.getMap().deleteVillainFromListofUnit();
                     Map.getMap().deleteHeroFromListOfVillain();
                     mapView.getJf().dispose();
+                    //mapView = null;
                 }
                 else
                     mapView.getJf().setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
