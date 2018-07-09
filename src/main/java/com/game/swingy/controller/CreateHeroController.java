@@ -57,7 +57,7 @@ public class CreateHeroController {
             Map.getMap().register(unitBuilder.createVillian());
         }*/
         Map.getMap().fillListOfVillain();
-        createHeroView.closeWindow();
+        createHeroView.getJf().dispose();
         //MapController mapController = new MapController(Map.getMap().getObservers());//TODO правильно передавати рівень героя;
         /*mapController.deAndActivatedbtnUnits();
         mapController.setRandomCoordinates();

@@ -86,12 +86,16 @@ public class Map {
         }
     }
 
-    public void deleteListofUnit() {
+    public void deleteVillainFromListofUnit() {
         for (int i = observers.size() - 1; i > 0; i--) {//i = 0 - hero index;
             unregister(observers.get(i));
         }
         observers.get(0).getCoordinates().setX(2);
         observers.get(0).getCoordinates().setY(2);
+    }
+
+    public void deleteHeroFromListOfVillain() {
+        unregister(observers.get(0));
     }
 
     static private int getMapSize(int heroLevel){

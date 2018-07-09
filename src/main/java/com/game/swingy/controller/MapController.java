@@ -18,7 +18,7 @@ public class MapController {
 
     private int mapSize;
     private MapView mapView;
-    DbMySQL dbMySQL;
+    private DbMySQL dbMySQL;
 
 
     public MapController(List<Unit> unit) {
@@ -77,7 +77,7 @@ public class MapController {
 
     private void initCloseLisener() {
 
-        /*mapView.getJf().addWindowListener(new WindowAdapter() {
+        mapView.getJf().addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 int confirmed = JOptionPane.showConfirmDialog(null,
                         "Are you sure you want to close current game with save?",
@@ -86,20 +86,21 @@ public class MapController {
 
                 if (confirmed == 0) {
                     fillDataBase();
-                    //TODO delete Hero from Arra<Unit>
+                    Map.getMap().deleteHeroFromListOfVillain();
+                    mapView.getJf().dispose();
                 }
                 else
                     mapView.getJf().setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
             }
-        });*/
+        });
 
 
 
-        mapView.getJf().addWindowListener(new WindowAdapter() {
+        /*mapView.getJf().addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent we) {
                 fillDataBase();
             }
-        });
+        });*/
     }
 
     private void fillDataBase() {
@@ -209,7 +210,6 @@ public class MapController {
                     Coordinates coordinates = new Coordinates(x, y);
                     units.get(i).setCoordinates(coordinates);
                     mapView.setVilliansIcon(x, y);
-                    //mapView.btnUnitsActivated(x, y);//активація кнопок юнітів
                 }
             }
         }
@@ -224,9 +224,10 @@ public class MapController {
                 y == getMapSize() - 1) {
             System.out.println("Mission completed");
             mapView.showMissionCompletedView();
-            Map.getMap().deleteListofUnit();
+            Map.getMap().deleteVillainFromListofUnit();
             //mapView.closeWindow();
-            mapView.getJf().setVisible(false);
+            //mapView.getJf().setVisible(false);
+            mapView.getJf().dispose();
             mapView = null;
             Map.getMap().fillListOfVillain();
         }
