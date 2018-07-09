@@ -77,6 +77,24 @@ public class MapController {
 
     private void initCloseLisener() {
 
+        /*mapView.getJf().addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                int confirmed = JOptionPane.showConfirmDialog(null,
+                        "Are you sure you want to close current game with save?",
+                        "Close Swingy Message Box",
+                        JOptionPane.YES_NO_OPTION);
+
+                if (confirmed == 0) {
+                    fillDataBase();
+                    //TODO delete Hero from Arra<Unit>
+                }
+                else
+                    mapView.getJf().setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+            }
+        });*/
+
+
+
         mapView.getJf().addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent we) {
                 fillDataBase();
@@ -207,7 +225,8 @@ public class MapController {
             System.out.println("Mission completed");
             mapView.showMissionCompletedView();
             Map.getMap().deleteListofUnit();
-            mapView.closeWindow();
+            //mapView.closeWindow();
+            mapView.getJf().setVisible(false);
             mapView = null;
             Map.getMap().fillListOfVillain();
         }

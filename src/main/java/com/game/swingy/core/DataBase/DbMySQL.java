@@ -20,7 +20,7 @@ public class DbMySQL {
 
     int heroId;
 
-    public DbMySQL() {
+    public DbMySQL() {//2817654 ніна Олексан
         try {
             Class.forName(JDBC_DRIVER);
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
