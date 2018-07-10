@@ -27,7 +27,7 @@ public class MapController {
 
         mapSize = getMapSize(level);
         mapView = new MapView(mapSize);
-        dbMySQL = new DbMySQL();
+        dbMySQL = Map.getMap().getDbMySQL();
         deAndActivatedbtnUnits();
         setRandomCoordinates();
         initMoveHero();
@@ -87,7 +87,7 @@ public class MapController {
                 if (confirmed == 0) {
                     fillDataBase();
                     Map.getMap().deleteVillainFromListofUnit();
-                    Map.getMap().deleteHeroFromListOfVillain();
+                    Map.getMap().deleteHeroFromListOfUnit();
                     mapView.getJf().dispose();
                     //mapView = null;
                 }

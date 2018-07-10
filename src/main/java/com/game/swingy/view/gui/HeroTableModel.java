@@ -1,11 +1,12 @@
 package com.game.swingy.view.gui;
 
 import javax.swing.table.AbstractTableModel;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 public class HeroTableModel extends AbstractTableModel {
 
-    private int columnCount = 10;
+    private int columnCount = 11;
     private ArrayList<String []> dataArrayList;
 
     public HeroTableModel() {
@@ -36,28 +37,34 @@ public class HeroTableModel extends AbstractTableModel {
     @Override
     public String getColumnName(int columnIndex) {
         switch (columnIndex) {
-            case 0: return "name";
-            case 1: return "heroClass";
-            case 2: return "level";
-            case 3: return "attack";
-            case 4: return "defense";
-            case 5: return "hitPoints";
-            case 6: return "weapon";
-            case 7: return "armor";
-            case 8: return "helm";
-            case 9: return "experience";
+            case 0: return "№ ID";
+            case 1: return "name";
+            case 2: return "heroClass";
+            case 3: return "level";
+            case 4: return "attack";
+            case 5: return "defense";
+            case 6: return "hitPoints";
+            case 7: return "weapon";
+            case 8: return "armor";
+            case 9: return "helm";
+            case 10: return "experience";
         }
         return "";
     }
 
     public void addDate(String []row) {
 
-        String []rowTable = new String[getColumnCount()];
+        String []rowTable;
         rowTable = row;
         dataArrayList.add(rowTable);
     }
 
     public void delRow(int row) {
         dataArrayList.remove(row);
+    }
+
+    public void addDataFromDB(Connection conn) {
+
+
     }
 }

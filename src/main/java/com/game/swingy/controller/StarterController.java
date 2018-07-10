@@ -1,5 +1,6 @@
 package com.game.swingy.controller;
 
+import com.game.swingy.core.Map.Map;
 import com.game.swingy.view.gui.CreateHeroView;
 import com.game.swingy.view.gui.PreviousHeroView;
 import com.game.swingy.view.gui.StartView;
@@ -40,9 +41,8 @@ public class StarterController {
     private void onClickPreviouslyHero(){
 
         System.out.println("Отработало предвудущие герои");
-        PreviousHeroView mainFrame=new PreviousHeroView();
 
-        //mainFrame.setVisible(true);
+        Map.getMap().getMainFrame().initPreviousHeroView();
         //bc.setVisible(true);
         //bc.createAndShowGUI();
     }
