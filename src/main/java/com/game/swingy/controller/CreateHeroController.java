@@ -15,9 +15,10 @@ public class CreateHeroController {
 
     public CreateHeroController(CreateHeroView createHeroView) {
         this.createHeroView = createHeroView;
+        initCreateHero();
     }
 
-    public void initCreateHero() {
+    private void initCreateHero() {
         createHeroView.getBtnCreate().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onClickCreate();
@@ -52,16 +53,7 @@ public class CreateHeroController {
                 break;
         }
         Map.getMap().register(unitBuilder.createHero());
-        /*for (int i = 0; i < 12; i++) {//
-            unitConstructor.constructVillian(unitBuilder, Integer.toString(i));
-            Map.getMap().register(unitBuilder.createVillian());
-        }*/
         Map.getMap().fillListOfVillain();
         createHeroView.getJf().dispose();
-        //MapController mapController = new MapController(Map.getMap().getObservers());//TODO правильно передавати рівень героя;
-        /*mapController.deAndActivatedbtnUnits();
-        mapController.setRandomCoordinates();
-        mapController.initMoveHero();*/
-
     }
 }

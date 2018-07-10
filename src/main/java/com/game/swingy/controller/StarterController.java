@@ -1,8 +1,10 @@
 package com.game.swingy.controller;
 
 import com.game.swingy.view.gui.CreateHeroView;
+import com.game.swingy.view.gui.PreviousHeroView;
 import com.game.swingy.view.gui.StartView;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -32,12 +34,16 @@ public class StarterController {
         CreateHeroView createHeroView = new CreateHeroView();
         System.out.println("Отработало создание контроллера");
         CreateHeroController createHeroController = new CreateHeroController(createHeroView);
-        createHeroController.initCreateHero();
 
     }
 
     private void onClickPreviouslyHero(){
 
         System.out.println("Отработало предвудущие герои");
+        PreviousHeroView mainFrame=new PreviousHeroView();
+
+        //mainFrame.setVisible(true);
+        //bc.setVisible(true);
+        //bc.createAndShowGUI();
     }
 }
