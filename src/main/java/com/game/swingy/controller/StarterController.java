@@ -41,6 +41,7 @@ public class StarterController {
     private void onClickPreviouslyHero(){
 
         System.out.println("Отработало предвудущие герои");
+        //TODO check in exist is empty tables in DB
 
         Map.getMap().getMainFrame().initPreviousHeroView();
         //bc.setVisible(true);

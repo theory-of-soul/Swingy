@@ -76,7 +76,7 @@ public class DbMySQL {
                 " coordinatesX TINYINT UNSIGNED NOT NULL, " +
                 " coordinatesY TINYINT UNSIGNED NOT NULL, " +
                 " experience TINYINT UNSIGNED NOT NULL, " +
-                " PRIMARY KEY ( id ))";
+                " PRIMARY KEY (id))";
 
         villain = "CREATE TABLE IF NOT EXISTS Villain" +
                 "(id INT UNSIGNED NOT NULL AUTO_INCREMENT, " +
@@ -93,7 +93,7 @@ public class DbMySQL {
                 " coordinatesY TINYINT UNSIGNED NOT NULL, " +
                 " heroId INT UNSIGNED NOT NULL, " +
                 " PRIMARY KEY ( id ), " +
-                " FOREIGN KEY (heroId) REFERENCES Hero(id))";
+                " FOREIGN KEY (heroId) REFERENCES Hero (id)) ON DELETE CASCADE";
 
         try {
             //Register JDBC driver
