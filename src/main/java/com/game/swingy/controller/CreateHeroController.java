@@ -1,13 +1,13 @@
 package com.game.swingy.controller;
 
-import com.game.swingy.core.*;
-import com.game.swingy.core.Hero.UnitBuilder;
-import com.game.swingy.core.Hero.UnitConstructor;
+import com.game.swingy.core.Map.Map;
+import com.game.swingy.core.Unit.Coordinates;
+import com.game.swingy.core.Unit.UnitBuilder;
+import com.game.swingy.core.Unit.UnitConstructor;
 import com.game.swingy.view.gui.CreateHeroView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 
 public class CreateHeroController {
 
@@ -15,9 +15,10 @@ public class CreateHeroController {
 
     public CreateHeroController(CreateHeroView createHeroView) {
         this.createHeroView = createHeroView;
+        initCreateHero();
     }
 
-    public void initCreateHero() {
+    private void initCreateHero() {
         createHeroView.getBtnCreate().addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onClickCreate();
@@ -35,7 +36,7 @@ public class CreateHeroController {
         String selectedHeroClass;
 
 
-        Coordinates coordinates = new Coordinates(0,0);
+        //Coordinates coordinates = new Coordinates(0,0);
         nameHero = createHeroView.getNameHero().getText();
         selectedHeroClass = (String) createHeroView.getHeroClassList().getSelectedItem();
 
@@ -50,20 +51,9 @@ public class CreateHeroController {
             case ("Peltasts") :
                 unitConstructor.constructPeltasts(unitBuilder, nameHero);
                 break;
-
         }
-        Map.getMap().register(unitBuilder.createHero());//TODO записувати героїв в БД, або в масив а потім в БД
-        for (int i = 0; i < 12; i++) {//TODO правильно визначати кількість ворогів
-            unitConstructor.constructVillian(unitBuilder, Integer.toString(i));
-            Map.getMap().register(unitBuilder.createVillian());
-        }
-        //System.out.println(tyty.toString());
-        //System.out.println(tyty.getHeroClass());
-        WindowEvent windowEvent = new WindowEvent(createHeroView.getJf(), WindowEvent.WINDOW_CLOSING);
-        createHeroView.getJf().dispatchEvent(windowEvent);
-        MapController mapController = new MapController(Map.getMap().getObservers());//TODO правильно передавати рівень героя;
-        mapController.deAndActivatedbtnUnits();
-        mapController.setRandomCoordinats();
-        mapController.initMoveHero();
+        Map.getMap().register(unitBuilder.createHero());
+        Map.getMap().fillListOfVillain();
+        createHeroView.getJf().dispose();
     }
 }

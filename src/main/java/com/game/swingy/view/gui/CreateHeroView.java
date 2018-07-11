@@ -2,6 +2,7 @@ package com.game.swingy.view.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
 
 public class CreateHeroView {
 
@@ -41,6 +42,13 @@ public class CreateHeroView {
         jf.setVisible(true);
         jf.setLocationRelativeTo(null);
 
+    }
+
+    public void closeWindow() {
+
+        jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        WindowEvent windowEvent = new WindowEvent(jf, WindowEvent.WINDOW_CLOSING);
+        jf.dispatchEvent(windowEvent);
     }
 
     public JButton getBtnCreate() {

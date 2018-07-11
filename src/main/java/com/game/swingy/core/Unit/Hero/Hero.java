@@ -1,8 +1,13 @@
-package com.game.swingy.core.Hero;
+package com.game.swingy.core.Unit.Hero;
 
-import com.game.swingy.core.*;
+import com.game.swingy.core.Map.EnumUnitTypeField;
+import com.game.swingy.core.Unit.Artefacts;
+import com.game.swingy.core.Unit.Coordinates;
+import com.game.swingy.core.Unit.Unit;
 
-public class Hero extends Unit implements HeroActions {
+public class Hero extends Unit {
+
+    private int experience;
 
     public Hero(EnumUnitTypeField kindOfUnit,
                    String name,
@@ -14,8 +19,9 @@ public class Hero extends Unit implements HeroActions {
                    int hitPoints,
                    Artefacts artefacts,
                    Coordinates coordinates) {
-        super(kindOfUnit, name, heroClass, level, experience, attack,
+        super(kindOfUnit, name, heroClass, level, attack,
                 defense, hitPoints, artefacts, coordinates);
+        this.experience = experience;
     }
 
     public void levelUp() {
@@ -42,27 +48,6 @@ public class Hero extends Unit implements HeroActions {
     public void experienceUp(int experience) {
 
         this.experience += experience;
-    }
-
-    @Override
-    public void move(EnumDirection enumDirection) {
-
-        int x = this.coordinates.getX();
-        int y = this.coordinates.getY();
-        switch (enumDirection) {
-            case EAST:
-                this.coordinates = new Coordinates(x + 1, y);
-                break;
-            case WEST:
-                this.coordinates = new Coordinates(x - 1, y);
-                break;
-            case NORTH:
-                this.coordinates = new Coordinates(x, y - 1);
-                break;
-            case SOUTH:
-                this.coordinates = new Coordinates(x, y + 1);
-                break;
-        }
     }
 
     public EnumUnitTypeField getKindOfUnit() {

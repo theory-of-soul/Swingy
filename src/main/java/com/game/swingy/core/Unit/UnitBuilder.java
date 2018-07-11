@@ -1,14 +1,12 @@
-package com.game.swingy.core.Hero;
+package com.game.swingy.core.Unit;
 
-import com.game.swingy.core.Artefacts;
-import com.game.swingy.core.Builder;
-import com.game.swingy.core.Coordinates;
-import com.game.swingy.core.Enemy.Villian;
-import com.game.swingy.core.EnumUnitTypeField;
+import com.game.swingy.core.Unit.Hero.Hero;
+import com.game.swingy.core.Map.EnumUnitTypeField;
+import com.game.swingy.core.Unit.Villain.Villain;
 
 public class UnitBuilder implements Builder {
 
-    private EnumUnitTypeField kindOfUnit;//TODO як краще визначати героя та ворога
+    private EnumUnitTypeField kindOfUnit;
     private String name;
     private String heroClass;
     private int level;
@@ -75,8 +73,8 @@ public class UnitBuilder implements Builder {
 
     }
 
-    public Villian createVillian() {
-        return new Villian(kindOfUnit, name, heroClass, level, experience, attack, defense, hitPoints, artefacts, coordinates);
+    public Villain createVillian() {
+        return new Villain(kindOfUnit, name, heroClass, level, attack, defense, hitPoints, artefacts, coordinates);
 
     }
 }

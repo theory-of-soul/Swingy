@@ -1,4 +1,4 @@
-package com.game.swingy.core;
+package com.game.swingy.core.Unit;
 
 public class Artefacts {
 

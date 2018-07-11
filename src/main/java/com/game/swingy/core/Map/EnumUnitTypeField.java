@@ -1,7 +1,6 @@
-package com.game.swingy.core;
+package com.game.swingy.core.Map;
 
 public enum EnumUnitTypeField {
     HERO,
     ENEMY,
-    EMPTY;
 }

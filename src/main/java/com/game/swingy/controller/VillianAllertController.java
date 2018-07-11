@@ -1,6 +1,6 @@
 package com.game.swingy.controller;
 
-import com.game.swingy.core.Unit;
+import com.game.swingy.core.Unit.Unit;
 import com.game.swingy.view.gui.VillianAllertView;
 
 import java.awt.event.ActionEvent;
@@ -10,11 +10,13 @@ import java.util.Random;
 public class VillianAllertController {
 
     private VillianAllertView villianAllertView;
+    private MapController mapController;
     private Unit villain;
 
-    public VillianAllertController(Unit villian) {
+    public VillianAllertController(Unit villian, MapController mapController) {
 
         this.villain = villian;
+        this.mapController = mapController;
         villianAllertView = new VillianAllertView();
         setTextOnBtnLabel(villian);
         initBtn(villian);
@@ -49,13 +51,15 @@ public class VillianAllertController {
             System.out.println("true");
             villianAllertView.showDisLucky();
             villianAllertView.closeWindow();
-            ArenaController arenaController = new ArenaController(this.villain);
+            ArenaController arenaController = new ArenaController(this.villain,
+                    this.mapController);
 
         }
         else {
             System.out.println("false");
             villianAllertView.showLucky();
             villianAllertView.closeWindow();
+            mapController.getMapViewFrame().setVisible(true);
         }
     }
 
@@ -63,20 +67,21 @@ public class VillianAllertController {
 
         System.out.println("Fight");
         if (villianAllertView.showFightAllert() == 0) {
-            System.out.println("yes");
-            ArenaController arenaController = new ArenaController(this.villain);
+            System.out.println("yes on click fight");
+            ArenaController arenaController = new ArenaController(this.villain,
+                    this.mapController);
             villianAllertView.closeWindow();
         }
     }
 
-    private void setTextOnBtnLabel(Unit villian) {
+    private void setTextOnBtnLabel(Unit villain) {
 
-        int level = villian.getLevel();
-        int attack = villian.getAttack();
-        int defense = villian.getDefense();
-        int weapon = villian.getArtefacts().getWeapon();
-        int armor = villian.getArtefacts().getArmor();
-        int health = villian.getHitPoints();
+        int level = villain.getLevel();
+        int attack = villain.getAttack();
+        int defense = villain.getDefense();
+        int weapon = villain.getArtefacts().getWeapon();
+        int armor = villain.getArtefacts().getArmor();
+        int health = villain.getHitPoints();
 
         villianAllertView.getLevellabel2().setText(Integer.toString(level));
         villianAllertView.getAttackLabel2().setText(Integer.toString(attack) +

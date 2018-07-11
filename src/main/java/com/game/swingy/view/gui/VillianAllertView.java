@@ -87,13 +87,13 @@ public class VillianAllertView {
         panelBtn = new JPanel();
         panelBtn.setLayout(new BorderLayout());
         panelMain.setLayout(new GridBagLayout());
-        levellabel1 = new JLabel("Villian level");
+        levellabel1 = new JLabel("Villain level");
         levellabel2 = new JLabel();
-        attackLabel1 = new JLabel("Villian attack");
+        attackLabel1 = new JLabel("Villain attack");
         attackLabel2 = new JLabel();
-        defenseLabel1 = new JLabel("Villian degense");
+        defenseLabel1 = new JLabel("Villain degense");
         defenseLabel2 = new JLabel();
-        artefactsLabel = new JLabel("Villian artefacts");
+        artefactsLabel = new JLabel("Villain artefacts");
         weaponLabel1 = new JLabel("Points plus to attack");
         weaponLabel2 = new JLabel();
         armorLabel1 = new JLabel("Points plus to defense");

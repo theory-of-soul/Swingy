@@ -1,6 +1,7 @@
 package com.game.swingy.controller;
 
-import com.game.swingy.core.Map;
+import com.game.swingy.core.Unit.Hero.Hero;
+import com.game.swingy.core.Map.Map;
 import com.game.swingy.view.gui.HeroStatisticsView;
 
 import java.awt.event.ActionEvent;
@@ -19,15 +20,16 @@ public class StatisticsController {
 
     public void setHeroFields() {
 
-        String name = Map.getMap().getObservers().get(0).getName();
-        String heroClass = Map.getMap().getObservers().get(0).getHeroClass();
-        int level = Map.getMap().getObservers().get(0).getLevel();
-        int experience = Map.getMap().getObservers().get(0).getExperience();
-        int attack = Map.getMap().getObservers().get(0).getAttack();
-        int defense = Map.getMap().getObservers().get(0).getDefense();
-        int hitPoints = Map.getMap().getObservers().get(0).getHitPoints();
-        int weapon = Map.getMap().getObservers().get(0).getArtefacts().getWeapon();
-        int armor = Map.getMap().getObservers().get(0).getArtefacts().getArmor();
+        Hero hero = (Hero)Map.getMap().getObservers().get(0);
+        String name = hero.getName();
+        String heroClass = hero.getHeroClass();
+        int level = hero.getLevel();
+        int experience = hero.getExperience();
+        int attack = hero.getAttack();
+        int defense = hero.getDefense();
+        int hitPoints = hero.getHitPoints();
+        int weapon = hero.getArtefacts().getWeapon();
+        int armor = hero.getArtefacts().getArmor();
 
         heroStatisticsView.getLabelHeroName2().setText(name);
         heroStatisticsView.getLabelHeroCass2().setText(heroClass);

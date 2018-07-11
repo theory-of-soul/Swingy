@@ -58,6 +58,7 @@ public class ArenaView {
     private void createTools() {
 
         jf = new JFrame("Swingy Arena");
+        jf.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         allertFrame = new JFrame();
         createHeroTools();
         createVillianTools();
@@ -251,13 +252,13 @@ public class ArenaView {
         villianBtn = new JButton("Villain");
         lableVillian = new JLabel("VILLAIN");
         lableVillian.setHorizontalAlignment(JLabel.CENTER);
-        levellabel1 = new JLabel("Villian level");
+        levellabel1 = new JLabel("Villain level");
         levellabel2 = new JLabel();
-        attackLabel1 = new JLabel("Villian attack");
+        attackLabel1 = new JLabel("Villain attack");
         attackLabel2 = new JLabel();
-        defenseLabel1 = new JLabel("Villian degense");
+        defenseLabel1 = new JLabel("Villain defense");
         defenseLabel2 = new JLabel();
-        artefactsLabel = new JLabel("Villian artefacts");
+        artefactsLabel = new JLabel("Villain artefacts");
         weaponLabel1 = new JLabel("Points plus to attack");
         weaponLabel2 = new JLabel();
         armorLabel1 = new JLabel("Points plus to defense");
@@ -273,6 +274,21 @@ public class ArenaView {
         jf.setLocationRelativeTo(null);*/
     }
 
+    public int showArtefacts() {
+
+        Object[] options = {"weapon",
+                "armor",
+                "helm"};
+        return JOptionPane.showOptionDialog(allertFrame,
+                "select one of the three artifacts",
+                "Dropped artefacts",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                options,
+                options[2]);
+    }
+
     public void showLoser() {
 
         JOptionPane.showMessageDialog(allertFrame,
@@ -285,10 +301,16 @@ public class ArenaView {
                 "Perfectly!!!\nYou are winner");
     }
 
-    public void showWinView() {
+    public void showWinVillainView() {
 
         JOptionPane.showMessageDialog(allertFrame,
                 "You win villain");
+    }
+
+    public void showMissAttack() {
+
+        JOptionPane.showMessageDialog(allertFrame,
+                "Something went wrong");
     }
 
     public void exitWindow() {

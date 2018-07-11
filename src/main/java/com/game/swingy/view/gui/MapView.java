@@ -3,10 +3,13 @@ package com.game.swingy.view.gui;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class MapView {
 
     private JFrame jf;
+    private JFrame allertFrame = new JFrame();
     private JPanel panel;
     private Container content;
     private JButton btnUnits[][];
@@ -94,8 +97,26 @@ public class MapView {
             System.out.println(ex);
         }
     }
+
+    public void showMissionCompletedView() {
+
+        JOptionPane.showMessageDialog(allertFrame,
+                "Mission completed");
+    }
+
+    public void closeWindow() {
+
+        jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        WindowEvent windowEvent = new WindowEvent(jf, WindowEvent.WINDOW_CLOSING);
+        jf.dispatchEvent(windowEvent);
+    }
+
     public void setEmptyIcon(int x, int y) {
 
         btnUnits[x][y].setIcon(null);
+    }
+
+    public JFrame getJf() {
+        return jf;
     }
 }
