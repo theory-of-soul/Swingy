@@ -2,9 +2,7 @@ package com.game.swingy.core.Map;
 
 import com.game.swingy.controller.MapController;
 import com.game.swingy.core.DataBase.DbMySQL;
-import com.game.swingy.core.Unit.Unit;
-import com.game.swingy.core.Unit.UnitBuilder;
-import com.game.swingy.core.Unit.UnitConstructor;
+import com.game.swingy.core.Unit.*;
 import com.game.swingy.view.gui.PreviousHeroView;
 
 import java.util.ArrayList;
@@ -51,18 +49,19 @@ public class Map {
         int mapSize = getMapSize(level);
         int counterOfVillain = mapSize * mapSize / 2;
             for (int i = (int)(counterOfVillain * 0.7); i > 0; i--) {
-                builderVillain(level);
+                buildVillain(level);
             }
             for (int i = (int)(counterOfVillain * 0.35); i > 0; i--) {
                 if (level == 4)
-                    builderVillain(level - 1);
+                    buildVillain(level - 1);
                 else
-                    builderVillain(level + 1);
+                    buildVillain(level + 1);
             }
-        MapController mapController = new MapController(observers);
+        MapController mapController = new MapController();
+        mapController.setRandomCoordinates();
     }
 
-    private void builderVillain(int level) {
+    private void buildVillain(int level) {
 
         UnitConstructor unitConstructor = new UnitConstructor();
         UnitBuilder unitBuilder = new UnitBuilder();
@@ -110,6 +109,37 @@ public class Map {
     public void createPreviousHeroView() {
 
         previousHeroView = new PreviousHeroView();
+    }
+
+    public void loadHero(String []rowData) {
+        UnitBuilder unitBuilder = new UnitBuilder();
+        Coordinates coordinates = new Coordinates();
+        Artefacts artefacts = new Artefacts();
+        unitBuilder.setName(rowData[0]);
+        unitBuilder.setHeroClass(rowData[1]);
+        unitBuilder.setLevel(Integer.parseInt(rowData[2]));
+        unitBuilder.setAttack(Integer.parseInt(rowData[3]));
+        unitBuilder.setDefense(Integer.parseInt(rowData[4]));
+        unitBuilder.setHitPoints(Integer.parseInt(rowData[5]));
+        artefacts.setWeapon(Integer.parseInt(rowData[6]));
+        artefacts.setArmor(Integer.parseInt(rowData[7]));
+        artefacts.setHelm(Integer.parseInt(rowData[8]));
+        coordinates.setX(Integer.parseInt(rowData[9]));
+        coordinates.setY(Integer.parseInt(rowData[10]));
+        unitBuilder.setArtefacts(artefacts);
+        unitBuilder.setCoordinates(coordinates);
+        if (rowData.length == 12) {
+            unitBuilder.setExperience(Integer.parseInt(rowData[11]));
+            register(unitBuilder.createHero());
+        }
+        else
+            register(unitBuilder.createVillian());
+
+    }
+
+    public void loadVillain(String []rowData) {
+
+
     }
 
     public int getVillainX() {
