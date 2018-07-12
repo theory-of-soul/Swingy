@@ -93,7 +93,7 @@ public class DbMySQL {
                 " coordinatesY TINYINT UNSIGNED NOT NULL, " +
                 " heroId INT UNSIGNED NOT NULL, " +
                 " PRIMARY KEY ( id ), " +
-                " FOREIGN KEY (heroId) REFERENCES Hero (id)) ON DELETE CASCADE";
+                " FOREIGN KEY (heroId) REFERENCES Hero (id) ON DELETE CASCADE)";
 
         try {
             //Register JDBC driver
@@ -221,7 +221,7 @@ public class DbMySQL {
                         rs.getString("helm"),
                         rs.getString("experience")
                 };
-                Map.getMap().getMainFrame().getHtm().addDate(row);
+                Map.getMap().getPreviousHeroView().getHtm().addDate(row);
             }
             rs.close();
 //TODO rs.close якось треба почитати пронього
@@ -232,6 +232,46 @@ public class DbMySQL {
             e.printStackTrace();
         }
     }
+
+    public void getSelectedHero() {
+
+        try {
+            //Register JDBC driver
+            Class.forName(JDBC_DRIVER);
+
+
+            //Execute a query
+            System.out.println("Get Data from Swingy database...");
+            statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT FROM Hero WHERE id = " + heroId);
+            while (rs.next()) {
+                String []row = {
+                        rs.getString("id"),
+                        rs.getString("name"),
+                        rs.getString("heroClass"),
+                        rs.getString("level"),
+                        rs.getString("attack"),
+                        rs.getString("defense"),
+                        rs.getString("hitPoints"),
+                        rs.getString("weapon"),
+                        rs.getString("armor"),
+                        rs.getString("helm"),
+                        rs.getString("coordinatesX"),
+                        rs.getString("coordinatesY"),
+                        rs.getString("experience")
+                };
+                Map.getMap().getPreviousHeroView().getHtm().addDate(row);
+            }
+            rs.close();
+//TODO rs.close якось треба почитати пронього
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        }
+    }
+
     public void deleteRow(int heroId) {
 
         try {
@@ -242,8 +282,7 @@ public class DbMySQL {
             //Execute a query
             System.out.println("Get Data from Swingy database...");
             statement = conn.createStatement();
-            statement.execute("DELETE FROM Unit WHERE heroId >= " + heroId);
-            statement.execute("DELETE FROM Hero WHERE id >= " + heroId);
+            statement.execute("DELETE FROM Hero WHERE id = " + heroId);
 //TODO правильно видалити в героя та вогоро в обох таблицях
             statement.close();
         } catch (SQLException e) {
@@ -252,5 +291,27 @@ public class DbMySQL {
             //Handle errors for Class.forName
             e.printStackTrace();
         }
+    }
+
+    public boolean isEmptyHeroTable() {
+
+        try {
+            //Register JDBC driver
+            Class.forName(JDBC_DRIVER);
+
+
+            //Execute a query
+            System.out.println("Get Data from Swingy database...");
+            statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM Hero");
+            return rs.next();
+//TODO rs.close якось треба почитати пронього
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        }
+        return false; //TODO throw как правильно вернути коли нічого не треба повертати
     }
 }

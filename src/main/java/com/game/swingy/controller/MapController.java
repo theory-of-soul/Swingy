@@ -91,8 +91,11 @@ public class MapController {
                     mapView.getJf().dispose();
                     //mapView = null;
                 }
-                else
-                    mapView.getJf().setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+                else {
+                    Map.getMap().deleteVillainFromListofUnit();
+                    Map.getMap().deleteHeroFromListOfUnit();
+                    mapView.getJf().dispose();
+                }
             }
         });
 

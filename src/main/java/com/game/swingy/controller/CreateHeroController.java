@@ -1,7 +1,6 @@
 package com.game.swingy.controller;
 
 import com.game.swingy.core.Map.Map;
-import com.game.swingy.core.Unit.Coordinates;
 import com.game.swingy.core.Unit.UnitBuilder;
 import com.game.swingy.core.Unit.UnitConstructor;
 import com.game.swingy.view.gui.CreateHeroView;
@@ -13,8 +12,8 @@ public class CreateHeroController {
 
     private CreateHeroView createHeroView;
 
-    public CreateHeroController(CreateHeroView createHeroView) {
-        this.createHeroView = createHeroView;
+    public CreateHeroController() {
+        this.createHeroView = new CreateHeroView();
         initCreateHero();
     }
 
