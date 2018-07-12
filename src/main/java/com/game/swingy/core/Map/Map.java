@@ -1,9 +1,11 @@
 package com.game.swingy.core.Map;
 
 import com.game.swingy.controller.MapController;
+import com.game.swingy.core.DataBase.DbMySQL;
 import com.game.swingy.core.Unit.Unit;
 import com.game.swingy.core.Unit.UnitBuilder;
 import com.game.swingy.core.Unit.UnitConstructor;
+import com.game.swingy.view.gui.PreviousHeroView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,8 @@ public class Map {
 
     private static Map map;
     private List<Unit> observers = new ArrayList<Unit>();
+    private PreviousHeroView mainFrame=new PreviousHeroView();
+    private DbMySQL dbMySQL = new DbMySQL();
     private int villainX;
     private int villainY;
 
@@ -94,7 +98,7 @@ public class Map {
         observers.get(0).getCoordinates().setY(2);
     }
 
-    public void deleteHeroFromListOfVillain() {
+    public void deleteHeroFromListOfUnit() {
         unregister(observers.get(0));
     }
 
@@ -117,6 +121,14 @@ public class Map {
 
     public void setVillainY(int villainY) {
         this.villainY = villainY;
+    }
+
+    public PreviousHeroView getMainFrame() {
+        return mainFrame;
+    }
+
+    public DbMySQL getDbMySQL() {
+        return dbMySQL;
     }
 
     /*public int getMapSize() {

@@ -1,6 +1,7 @@
 package com.game.swingy.core.DataBase;
 
 //STEP 1. Import required packages
+import com.game.swingy.core.Map.Map;
 import com.game.swingy.core.Unit.Hero.Hero;
 import com.game.swingy.core.Unit.Unit;
 
@@ -15,7 +16,7 @@ public class DbMySQL {
 
     //  Database credentials
     static final String USER = "root";
-    static final String PASS = "root";
+    static final String PASS = "";
     private String dbName = "Swingy";
 
     int heroId;
@@ -75,7 +76,7 @@ public class DbMySQL {
                 " coordinatesX TINYINT UNSIGNED NOT NULL, " +
                 " coordinatesY TINYINT UNSIGNED NOT NULL, " +
                 " experience TINYINT UNSIGNED NOT NULL, " +
-                " PRIMARY KEY ( id ))";
+                " PRIMARY KEY (id))";
 
         villain = "CREATE TABLE IF NOT EXISTS Villain" +
                 "(id INT UNSIGNED NOT NULL AUTO_INCREMENT, " +
@@ -92,13 +93,7 @@ public class DbMySQL {
                 " coordinatesY TINYINT UNSIGNED NOT NULL, " +
                 " heroId INT UNSIGNED NOT NULL, " +
                 " PRIMARY KEY ( id ), " +
-                " FOREIGN KEY (heroId) REFERENCES Hero(id))";
-        /*Map = "CREATE TABLE IF NOT EXISTS Map" +
-                "(heroId INT UNSIGNED NOT NULL, " +
-                "villainId INT UNSIGNED NOT NULL, " +
-                "PRIMARY KEY (heroId , villainId), " +
-                "FOREIGN KEY (heroId) REFERENCES Unit(id), " +
-                "FOREIGN KEY (villainId ) REFERENCES Unit(id) )";*/
+                " FOREIGN KEY (heroId) REFERENCES Hero (id) ON DELETE CASCADE) ";
 
         try {
             //Register JDBC driver
@@ -199,5 +194,62 @@ public class DbMySQL {
     }
     public void fillMapTable() {
 
+    }
+
+    public void getData() {
+
+        try {
+            //Register JDBC driver
+            Class.forName(JDBC_DRIVER);
+
+
+            //Execute a query
+            System.out.println("Get Data from Swingy database...");
+            statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM Hero");
+            while (rs.next()) {
+                String []row = {
+                        rs.getString("id"),
+                        rs.getString("name"),
+                        rs.getString("heroClass"),
+                        rs.getString("level"),
+                        rs.getString("attack"),
+                        rs.getString("defense"),
+                        rs.getString("hitPoints"),
+                        rs.getString("weapon"),
+                        rs.getString("armor"),
+                        rs.getString("helm"),
+                        rs.getString("experience")
+                };
+                Map.getMap().getMainFrame().getHtm().addDate(row);
+            }
+            rs.close();
+//TODO rs.close якось треба почитати пронього
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        }
+    }
+    public void deleteRow(int heroId) {
+
+        try {
+            //Register JDBC driver
+            Class.forName(JDBC_DRIVER);
+
+
+            //Execute a query
+            System.out.println("Get Data from Swingy database...");
+            statement = conn.createStatement();
+            statement.execute("DELETE FROM Hero WHERE id = " + heroId);
+//TODO правильно видалити в героя та вогоро в обох таблицях
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        }
     }
 }
