@@ -14,7 +14,7 @@ public class Map {
 
     private static Map map;
     private List<Unit> observers = new ArrayList<Unit>();
-    private PreviousHeroView mainFrame=new PreviousHeroView();
+    private PreviousHeroView previousHeroView;
     private DbMySQL dbMySQL = new DbMySQL();
     private int villainX;
     private int villainY;
@@ -107,6 +107,11 @@ public class Map {
         return (heroLevel - 1) * 5 + 10 - (heroLevel % 2);
     }
 
+    public void createPreviousHeroView() {
+
+        previousHeroView = new PreviousHeroView();
+    }
+
     public int getVillainX() {
         return villainX;
     }
@@ -123,13 +128,15 @@ public class Map {
         this.villainY = villainY;
     }
 
-    public PreviousHeroView getMainFrame() {
-        return mainFrame;
+    public PreviousHeroView getPreviousHeroView() {
+        return previousHeroView;
     }
 
     public DbMySQL getDbMySQL() {
         return dbMySQL;
     }
+
+
 
     /*public int getMapSize() {
         if(map == null)

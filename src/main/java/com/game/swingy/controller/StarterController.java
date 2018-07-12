@@ -2,10 +2,9 @@ package com.game.swingy.controller;
 
 import com.game.swingy.core.Map.Map;
 import com.game.swingy.view.gui.CreateHeroView;
-import com.game.swingy.view.gui.PreviousHeroView;
 import com.game.swingy.view.gui.StartView;
 
-import java.awt.*;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -31,20 +30,25 @@ public class StarterController {
     }
 
     private void onClickCreateHero(){
-
-        CreateHeroView createHeroView = new CreateHeroView();
         System.out.println("Отработало создание контроллера");
-        CreateHeroController createHeroController = new CreateHeroController(createHeroView);
+        CreateHeroController createHeroController = new CreateHeroController();
 
     }
 
     private void onClickPreviouslyHero(){
 
         System.out.println("Отработало предвудущие герои");
-        //TODO check in exist is empty tables in DB
-
-        Map.getMap().getMainFrame().initPreviousHeroView();
+        if (Map.getMap().getDbMySQL().isEmptyHeroTable()) {
+            Map.getMap().createPreviousHeroView();
+            Map.getMap().getPreviousHeroView().initPreviousHeroView();
+        }
+        else {
+            JOptionPane.showMessageDialog(null,
+                    "At this time, you don't have saving hero");
+        }
         //bc.setVisible(true);
         //bc.createAndShowGUI();
     }
+
+    //TODO close starterView
 }

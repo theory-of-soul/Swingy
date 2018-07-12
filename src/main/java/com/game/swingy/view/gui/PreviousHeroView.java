@@ -59,9 +59,13 @@ public class PreviousHeroView {
                         JOptionPane.YES_NO_OPTION);
 
                 if (confirmed == 0) {
-                    htm.delRow(heroTable.getSelectedRow());
+                    int selectedRow = heroTable.getSelectedRow();
+                    Object object = heroTable.getValueAt(selectedRow, 0);
+                    String id = object.toString();
+                    System.out.println(selectedRow);
+                    htm.delRow(selectedRow);
                     htm.fireTableDataChanged();
-                    Map.getMap().getDbMySQL().deleteRow(heroTable.getSelectedRow());
+                    Map.getMap().getDbMySQL().deleteRow(Integer.parseInt(id));
                 }
             }
         });
@@ -78,6 +82,7 @@ public class PreviousHeroView {
                 if (confirmed == 0) {
                     //TODO load hero
                     frame.dispose();
+
                 }
             }
         });

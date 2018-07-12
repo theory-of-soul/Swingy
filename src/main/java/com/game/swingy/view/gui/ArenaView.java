@@ -279,7 +279,7 @@ public class ArenaView {
         Object[] options = {"weapon",
                 "armor",
                 "helm"};
-        return JOptionPane.showOptionDialog(allertFrame,
+        return JOptionPane.showOptionDialog(null,
                 "select one of the three artifacts",
                 "Dropped artefacts",
                 JOptionPane.YES_NO_CANCEL_OPTION,
@@ -291,25 +291,25 @@ public class ArenaView {
 
     public void showLoser() {
 
-        JOptionPane.showMessageDialog(allertFrame,
+        JOptionPane.showMessageDialog(null,
                 "Good buy, LOSER!!!");
     }
 
     public void showWinner() {
 
-        JOptionPane.showMessageDialog(allertFrame,
+        JOptionPane.showMessageDialog(null,
                 "Perfectly!!!\nYou are winner");
     }
 
     public void showWinVillainView() {
 
-        JOptionPane.showMessageDialog(allertFrame,
+        JOptionPane.showMessageDialog(null,
                 "You win villain");
     }
 
     public void showMissAttack() {
 
-        JOptionPane.showMessageDialog(allertFrame,
+        JOptionPane.showMessageDialog(null,
                 "Something went wrong");
     }
 
