@@ -233,7 +233,7 @@ public class DbMySQL {
         }
     }
 
-    public void getSelectedHero() {
+    public void getSelectedHero(int heroId) {
 
         try {
             //Register JDBC driver
@@ -243,10 +243,9 @@ public class DbMySQL {
             //Execute a query
             System.out.println("Get Data from Swingy database...");
             statement = conn.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT FROM Hero WHERE id = " + heroId);
+            ResultSet rs = statement.executeQuery("SELECT * FROM Hero WHERE id = " + heroId);
             while (rs.next()) {
                 String []row = {
-                        rs.getString("id"),
                         rs.getString("name"),
                         rs.getString("heroClass"),
                         rs.getString("level"),
@@ -260,7 +259,44 @@ public class DbMySQL {
                         rs.getString("coordinatesY"),
                         rs.getString("experience")
                 };
-                Map.getMap().getPreviousHeroView().getHtm().addDate(row);
+                Map.getMap().loadHero(row);
+            }
+            rs.close();
+//TODO rs.close якось треба почитати пронього
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        }
+    }
+
+    public void getSelectedVillain(int heroId) {
+
+        try {
+            //Register JDBC driver
+            Class.forName(JDBC_DRIVER);
+
+
+            //Execute a query
+            System.out.println("Get Data from Swingy database...");
+            statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT * FROM Villain WHERE heroId = " + heroId);
+            while (rs.next()) {
+                String []row = {
+                        rs.getString("name"),
+                        rs.getString("heroClass"),
+                        rs.getString("level"),
+                        rs.getString("attack"),
+                        rs.getString("defense"),
+                        rs.getString("hitPoints"),
+                        rs.getString("weapon"),
+                        rs.getString("armor"),
+                        rs.getString("helm"),
+                        rs.getString("coordinatesX"),
+                        rs.getString("coordinatesY"),
+                };
+                Map.getMap().loadHero(row);
             }
             rs.close();
 //TODO rs.close якось треба почитати пронього
@@ -312,6 +348,6 @@ public class DbMySQL {
             //Handle errors for Class.forName
             e.printStackTrace();
         }
-        return false; //TODO throw как правильно вернути коли нічого не треба повертати
+        throw new Error("Hero table does't empty");
     }
 }

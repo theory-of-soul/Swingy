@@ -65,7 +65,7 @@ public class UnitBuilder implements Builder {
     @Override
     public void setCoordinates(Coordinates coordinates) {
 //        int mapSize = Map.getMap().getMapSize();
-        this.coordinates = coordinates;//TODO як визначити кординати героя якщо його ще немає, тобто ставити вручну а якщо герой готой то вираховувати з його рівня
+        this.coordinates = coordinates;
     }
 
     public Hero createHero() {

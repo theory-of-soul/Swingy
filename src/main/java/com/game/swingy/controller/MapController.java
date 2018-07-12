@@ -21,7 +21,7 @@ public class MapController {
     private DbMySQL dbMySQL;
 
 
-    public MapController(List<Unit> unit) {
+    public MapController() {
 
         int level = Map.getMap().getObservers().get(0).getLevel();
 
@@ -29,7 +29,6 @@ public class MapController {
         mapView = new MapView(mapSize);
         dbMySQL = Map.getMap().getDbMySQL();
         deAndActivatedbtnUnits();
-        setRandomCoordinates();
         initMoveHero();
         initCloseLisener();
     }
@@ -217,6 +216,16 @@ public class MapController {
                     mapView.setVilliansIcon(x, y);
                 }
             }
+        }
+    }
+
+    public void setVillainIcon() {
+
+        int length = Map.getMap().getObservers().size();
+        List<Unit> units = Map.getMap().getObservers();
+        for (int i = 1; i < length; i++) {
+            mapView.setVilliansIcon(units.get(i).getCoordinates().getX(),
+                    units.get(i).getCoordinates().getY());
         }
     }
 

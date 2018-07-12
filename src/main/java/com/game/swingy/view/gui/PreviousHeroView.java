@@ -1,5 +1,6 @@
 package com.game.swingy.view.gui;
 
+import com.game.swingy.controller.MapController;
 import com.game.swingy.core.Map.Map;
 
 import javax.swing.*;
@@ -81,6 +82,13 @@ public class PreviousHeroView {
 
                 if (confirmed == 0) {
                     //TODO load hero
+                    int selectedRow = heroTable.getSelectedRow();
+                    Object object = heroTable.getValueAt(selectedRow, 0);
+                    String id = object.toString();
+                    Map.getMap().getDbMySQL().getSelectedHero(Integer.parseInt(id));
+                    Map.getMap().getDbMySQL().getSelectedVillain(Integer.parseInt(id));
+                    MapController mapController = new MapController();
+                    mapController.setVillainIcon();
                     frame.dispose();
                 }
             }

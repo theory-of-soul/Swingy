@@ -12,6 +12,8 @@ public class Artefacts {
         this.helm = helm;
     }
 
+    public Artefacts() {}
+
     public int getWeapon() {
         return weapon;
     }

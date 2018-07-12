@@ -1,5 +1,7 @@
 package com.game.swingy.view.gui;
 
+import com.game.swingy.core.Map.Map;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -33,7 +35,8 @@ public class MapView {
         jf.setSize(mapSize * 95, mapSize * 95);
         jf.setVisible(true);
         jf.setLocationRelativeTo(null);
-        setHeroIcon(mapSize / 2, mapSize / 2);
+        setHeroIcon(Map.getMap().getObservers().get(0).getCoordinates().getX(),
+                Map.getMap().getObservers().get(0).getCoordinates().getY());
 
     }
 
