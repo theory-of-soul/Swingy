@@ -61,8 +61,7 @@ public class Map {
         mapController.setRandomCoordinates();
     }
 
-    // register - можно вынести
-    //
+
     private void buildVillain(int level) {
 
         UnitConstructor unitConstructor = new UnitConstructor();
