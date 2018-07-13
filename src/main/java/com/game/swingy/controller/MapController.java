@@ -234,8 +234,7 @@ public class MapController {
         int x = Map.getMap().getObservers().get(0).getCoordinates().getX();
         int y = Map.getMap().getObservers().get(0).getCoordinates().getY();
 
-        if (x == 0 || y == 0 || x == getMapSize() - 1 ||
-                y == getMapSize() - 1) {
+        if (x == 0 || y == 0 || x == getMapSize() - 1 || y == getMapSize() - 1) {
             System.out.println("Mission completed");
             mapView.showMissionCompletedView();
             Map.getMap().deleteVillainFromListofUnit();

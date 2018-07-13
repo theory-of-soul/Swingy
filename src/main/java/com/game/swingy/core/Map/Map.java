@@ -48,19 +48,21 @@ public class Map {
         int level = observers.get(0).getLevel();
         int mapSize = getMapSize(level);
         int counterOfVillain = mapSize * mapSize / 2;
-            for (int i = (int)(counterOfVillain * 0.7); i > 0; i--) {
-                buildVillain(level);
-            }
-            for (int i = (int)(counterOfVillain * 0.35); i > 0; i--) {
-                if (level == 4)
-                    buildVillain(level - 1);
-                else
-                    buildVillain(level + 1);
-            }
+        for (int i = (int)(counterOfVillain * 0.7); i > 0; i--) {
+            buildVillain(level);
+        }
+        for (int i = (int)(counterOfVillain * 0.35); i > 0; i--) {
+            if (level == 4)
+                buildVillain(level - 1);
+            else
+                buildVillain(level + 1);
+        }
         MapController mapController = new MapController();
         mapController.setRandomCoordinates();
     }
 
+    // register - можно вынести
+    //
     private void buildVillain(int level) {
 
         UnitConstructor unitConstructor = new UnitConstructor();
@@ -68,25 +70,22 @@ public class Map {
         switch (level) {
             case 0:
                 unitConstructor.constructVillian0(unitBuilder, Integer.toString(level));
-                register(unitBuilder.createVillian());
                 break;
             case 1:
                 unitConstructor.constructVillian1(unitBuilder, Integer.toString(level));
-                register(unitBuilder.createVillian());
                 break;
             case 2:
                 unitConstructor.constructVillian2(unitBuilder, Integer.toString(level));
-                register(unitBuilder.createVillian());
                 break;
             case 3:
                 unitConstructor.constructVillian3(unitBuilder, Integer.toString(level));
-                register(unitBuilder.createVillian());
                 break;
             case 4:
                 unitConstructor.constructVillian4(unitBuilder, Integer.toString(level));
-                register(unitBuilder.createVillian());
                 break;
         }
+
+        register(unitBuilder.createVillian());
     }
 
     public void deleteVillainFromListofUnit() {
