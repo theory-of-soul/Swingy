@@ -1,8 +1,7 @@
 package com.game.swingy.controller;
 
 import com.game.swingy.core.Map.Map;
-import com.game.swingy.view.gui.CreateHeroView;
-import com.game.swingy.view.gui.StartView;
+import com.game.swingy.view.console.StartViewInterface;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -10,9 +9,9 @@ import java.awt.event.ActionListener;
 
 public class StarterController {
 
-    private StartView startView;
+    private StartViewInterface startView;
 
-    public StarterController(StartView view) {
+    public StarterController(StartViewInterface view) {
         this.startView = view;
     }
 

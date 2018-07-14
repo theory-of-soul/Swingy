@@ -8,6 +8,8 @@ import com.game.swingy.view.gui.PreviousHeroView;
 import java.util.ArrayList;
 import java.util.List;
 
+
+// может назвать не Map а Game????
 public class Map {
 
     private static Map map;

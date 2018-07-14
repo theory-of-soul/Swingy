@@ -1,15 +1,17 @@
 package com.game.swingy.view.gui;
 
+import com.game.swingy.view.console.StartViewInterface;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class StartView {
+public class StartGuiView implements StartViewInterface {
 
     private JFrame jf;
     private JButton btnCreateHero;
     private JButton btnPreviouslyHero;
 
-    public StartView() {
+    public StartGuiView() {
         this.btnCreateHero = new JButton("Create a hero");//Creating a Button named Say Hello
         this.btnPreviouslyHero = new JButton("Select a previously created hero");//Creating a Button named Say Hello
 

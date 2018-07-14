@@ -59,13 +59,14 @@ public class PreviousHeroView {
                         "Deleting Swingy Hero",
                         JOptionPane.YES_NO_OPTION);
 
-                if (confirmed == 0) {
+                if (confirmed == JOptionPane.YES_OPTION) {
                     int selectedRow = heroTable.getSelectedRow();
                     Object object = heroTable.getValueAt(selectedRow, 0);
                     String id = object.toString();
                     System.out.println(selectedRow);
                     htm.delRow(selectedRow);
                     htm.fireTableDataChanged();
+
                     Map.getMap().getDbMySQL().deleteRow(Integer.parseInt(id));
                 }
             }
