@@ -1,6 +1,6 @@
 package com.game.swingy.core.Map;
 
-public enum EnumUnitTypeField {
+public enum UnitTypeFieldEnum {
     HERO,
     ENEMY,
 }

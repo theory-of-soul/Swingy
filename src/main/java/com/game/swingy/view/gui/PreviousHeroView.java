@@ -16,15 +16,17 @@ public class PreviousHeroView {
     private JButton deleteBtn;
     private JTable heroTable;
     private JScrollPane heroTableScrollPane;
+    private ActionListener deleteRowCallback;
 
     public PreviousHeroView() {
 
+        createTools();
+        initPreviousHeroView();
+
     }
 
-    public void initPreviousHeroView() {
+     private void initPreviousHeroView() {
 
-        createTools();
-        Map.getMap().getDbMySQL().getData();
 
         frame.add(heroTableScrollPane, new GridBagConstraints(0, 0, 2, 1, 1, 1,
                 GridBagConstraints.NORTH, GridBagConstraints.BOTH,
@@ -50,61 +52,29 @@ public class PreviousHeroView {
         loadBtn = new JButton("Load hero");
         deleteBtn = new JButton("Delete hero");
 
-        deleteBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                int confirmed = JOptionPane.showConfirmDialog(null,
-                        "Are you sure you want to delete hero?",
-                        "Deleting Swingy Hero",
-                        JOptionPane.YES_NO_OPTION);
-
-                if (confirmed == 0) {
-                    int selectedRow = heroTable.getSelectedRow();
-                    Object object = heroTable.getValueAt(selectedRow, 0);
-                    String id = object.toString();
-                    System.out.println(selectedRow);
-                    htm.delRow(selectedRow);
-                    htm.fireTableDataChanged();
-                    Map.getMap().getDbMySQL().deleteRow(Integer.parseInt(id));
-                }
-            }
-        });
-
-        loadBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                int confirmed = JOptionPane.showConfirmDialog(null,
-                        "Are you sure you want to load hero?",
-                        "Loading Swingy Hero",
-                        JOptionPane.YES_NO_OPTION);
-
-                if (confirmed == 0) {
-                    //TODO load hero
-                    int selectedRow = heroTable.getSelectedRow();
-                    Object object = heroTable.getValueAt(selectedRow, 0);
-                    String id = object.toString();
-                    Map.getMap().getDbMySQL().getSelectedHero(Integer.parseInt(id));
-                    Map.getMap().getDbMySQL().getSelectedVillain(Integer.parseInt(id));
-                    MapController mapController = new MapController();
-                    mapController.setVillainIcon();
-                    frame.dispose();
-                }
-            }
-        });
-
         htm = new HeroTableModel();
         heroTable = new JTable(htm);
         heroTableScrollPane = new JScrollPane(heroTable);
         heroTableScrollPane.setPreferredSize(new Dimension(850, 200));
     }
 
+    public void setDeleteAction(ActionListener action) {
+        deleteBtn.addActionListener(action);
+    }
+
+    public void setLoadAction(ActionListener action) {
+        loadBtn.addActionListener(action);
+    }
+
     public JFrame getFrame() {
         return frame;
     }
 
-    public HeroTableModel getHtm() {
+    public HeroTableModel getHeroTableModel() {
         return htm;
     }
+    public JTable getHeroTable() {
+        return heroTable;
+    }
+
 }

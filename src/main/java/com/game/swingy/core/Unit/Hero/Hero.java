@@ -1,6 +1,6 @@
 package com.game.swingy.core.Unit.Hero;
 
-import com.game.swingy.core.Map.EnumUnitTypeField;
+import com.game.swingy.core.Map.UnitTypeFieldEnum;
 import com.game.swingy.core.Unit.Artefacts;
 import com.game.swingy.core.Unit.Coordinates;
 import com.game.swingy.core.Unit.Unit;
@@ -9,7 +9,7 @@ public class Hero extends Unit {
 
     private int experience;
 
-    public Hero(EnumUnitTypeField kindOfUnit,
+    public Hero(UnitTypeFieldEnum kindOfUnit,
                    String name,
                    String heroClass,
                    int level,
@@ -50,11 +50,11 @@ public class Hero extends Unit {
         this.experience += experience;
     }
 
-    public EnumUnitTypeField getKindOfUnit() {
+    public UnitTypeFieldEnum getKindOfUnit() {
         return kindOfUnit;
     }
 
-    public void setKindOfUnit(EnumUnitTypeField kindOfUnit) {
+    public void setKindOfUnit(UnitTypeFieldEnum kindOfUnit) {
         this.kindOfUnit = kindOfUnit;
     }
 

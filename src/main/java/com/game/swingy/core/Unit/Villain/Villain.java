@@ -2,12 +2,12 @@ package com.game.swingy.core.Unit.Villain;
 
 import com.game.swingy.core.Unit.Artefacts;
 import com.game.swingy.core.Unit.Coordinates;
-import com.game.swingy.core.Map.EnumUnitTypeField;
+import com.game.swingy.core.Map.UnitTypeFieldEnum;
 import com.game.swingy.core.Unit.Unit;
 
 public class Villain extends Unit {
 
-    public Villain(EnumUnitTypeField kindOfUnit,
+    public Villain(UnitTypeFieldEnum kindOfUnit,
                    String name,
                    String heroClass,
                    int level,
