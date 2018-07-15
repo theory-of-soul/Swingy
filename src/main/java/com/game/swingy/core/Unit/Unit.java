@@ -1,10 +1,10 @@
 package com.game.swingy.core.Unit;
 
-import com.game.swingy.core.Map.EnumUnitTypeField;
+import com.game.swingy.core.Map.UnitTypeFieldEnum;
 
 public class Unit {
 
-    protected EnumUnitTypeField kindOfUnit;
+    protected UnitTypeFieldEnum kindOfUnit;
     protected String name;
     protected String heroClass;
     protected int level;
@@ -14,7 +14,7 @@ public class Unit {
     protected Artefacts artefacts;
     protected Coordinates coordinates;
 
-    public Unit(EnumUnitTypeField kindOfUnit,
+    public Unit(UnitTypeFieldEnum kindOfUnit,
                    String name,
                    String heroClass,
                    int level,
@@ -48,11 +48,11 @@ public class Unit {
         return true;
     }
 
-    public EnumUnitTypeField getKindOfUnit() {
+    public UnitTypeFieldEnum getKindOfUnit() {
         return kindOfUnit;
     }
 
-    public void setKindOfUnit(EnumUnitTypeField kindOfUnit) {
+    public void setKindOfUnit(UnitTypeFieldEnum kindOfUnit) {
         this.kindOfUnit = kindOfUnit;
     }
 

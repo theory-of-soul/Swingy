@@ -1,11 +1,11 @@
 package com.game.swingy.core.DataBase;
 
 //STEP 1. Import required packages
-import com.game.swingy.core.Map.Map;
 import com.game.swingy.core.Unit.Hero.Hero;
 import com.game.swingy.core.Unit.Unit;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DbMySQL {
     // JDBC driver name and database URL
@@ -196,8 +196,10 @@ public class DbMySQL {
 
     }
 
-    public void getData() {
+    public String [][] getData() {
 
+
+        ArrayList<String []> rowValues = new ArrayList<String []>();
         try {
             //Register JDBC driver
             Class.forName(JDBC_DRIVER);
@@ -208,8 +210,8 @@ public class DbMySQL {
             statement = conn.createStatement();
             ResultSet rs = statement.executeQuery("SELECT * FROM Hero");
             while (rs.next()) {
-                String []row = {
-                        rs.getString("id"),
+                String[] row = {
+                    rs.getString("id"),
                         rs.getString("name"),
                         rs.getString("heroClass"),
                         rs.getString("level"),
@@ -220,8 +222,9 @@ public class DbMySQL {
                         rs.getString("armor"),
                         rs.getString("helm"),
                         rs.getString("experience")
+
                 };
-                Map.getMap().getPreviousHeroView().getHtm().addDate(row);
+                rowValues.add(row);
             }
             rs.close();
 //TODO rs.close якось треба почитати пронього
@@ -231,10 +234,16 @@ public class DbMySQL {
             //Handle errors for Class.forName
             e.printStackTrace();
         }
+
+        String [][]row = new String[rowValues.size()][11];
+        row = rowValues.toArray(row);
+
+        return row;
     }
 
-    public void getSelectedHero(int heroId) {
+    public String[][] getSelectedHero(int heroId) {
 
+        ArrayList<String []> rowValues = new ArrayList<String []>();
         try {
             //Register JDBC driver
             Class.forName(JDBC_DRIVER);
@@ -259,7 +268,8 @@ public class DbMySQL {
                         rs.getString("coordinatesY"),
                         rs.getString("experience")
                 };
-                Map.getMap().loadHero(row);
+                rowValues.add(row);
+
             }
             rs.close();
 //TODO rs.close якось треба почитати пронього
@@ -269,10 +279,15 @@ public class DbMySQL {
             //Handle errors for Class.forName
             e.printStackTrace();
         }
+        String [][]row = new String[rowValues.size()][11];
+        row = rowValues.toArray(row);
+
+        return row;
     }
 
-    public void getSelectedVillain(int heroId) {
+    public String[][] getSelectedVillain(int heroId) {
 
+        ArrayList<String []> rowValues = new ArrayList<String []>();
         try {
             //Register JDBC driver
             Class.forName(JDBC_DRIVER);
@@ -296,7 +311,7 @@ public class DbMySQL {
                         rs.getString("coordinatesX"),
                         rs.getString("coordinatesY"),
                 };
-                Map.getMap().loadHero(row);
+                rowValues.add(row);
             }
             rs.close();
 //TODO rs.close якось треба почитати пронього
@@ -306,6 +321,10 @@ public class DbMySQL {
             //Handle errors for Class.forName
             e.printStackTrace();
         }
+        String [][]row = new String[rowValues.size()][11];
+        row = rowValues.toArray(row);
+
+        return row;
     }
 
     public void deleteRow(int heroId) {

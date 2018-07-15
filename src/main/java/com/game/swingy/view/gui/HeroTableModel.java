@@ -1,8 +1,8 @@
 package com.game.swingy.view.gui;
 
 import javax.swing.table.AbstractTableModel;
-import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class HeroTableModel extends AbstractTableModel {
 
@@ -52,19 +52,12 @@ public class HeroTableModel extends AbstractTableModel {
         return "";
     }
 
-    public void addDate(String []row) {
+    public void addDate(String [][]row) {
 
-        String []rowTable;
-        rowTable = row;
-        dataArrayList.add(rowTable);
+        Collections.addAll(dataArrayList, row);
     }
 
     public void delRow(int row) {
         dataArrayList.remove(row);
-    }
-
-    public void addDataFromDB(Connection conn) {
-
-
     }
 }

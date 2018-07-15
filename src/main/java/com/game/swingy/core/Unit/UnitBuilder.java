@@ -1,12 +1,12 @@
 package com.game.swingy.core.Unit;
 
 import com.game.swingy.core.Unit.Hero.Hero;
-import com.game.swingy.core.Map.EnumUnitTypeField;
+import com.game.swingy.core.Map.UnitTypeFieldEnum;
 import com.game.swingy.core.Unit.Villain.Villain;
 
 public class UnitBuilder implements Builder {
 
-    private EnumUnitTypeField kindOfUnit;
+    private UnitTypeFieldEnum kindOfUnit;
     private String name;
     private String heroClass;
     private int level;
@@ -18,7 +18,7 @@ public class UnitBuilder implements Builder {
     private Coordinates coordinates;
 
     @Override
-    public void setKindOfUnit(EnumUnitTypeField kindOfUnit) {
+    public void setKindOfUnit(UnitTypeFieldEnum kindOfUnit) {
         this.kindOfUnit = kindOfUnit;
     }
 

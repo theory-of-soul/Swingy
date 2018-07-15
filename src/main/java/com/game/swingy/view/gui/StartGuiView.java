@@ -1,11 +1,12 @@
 package com.game.swingy.view.gui;
 
-import com.game.swingy.view.console.StartViewInterface;
+import com.game.swingy.view.StartView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
-public class StartGuiView implements StartViewInterface {
+public class StartGuiView implements StartView {
 
     private JFrame jf;
     private JButton btnCreateHero;
@@ -26,27 +27,13 @@ public class StartGuiView implements StartViewInterface {
         jf.pack();
     }
 
-    public JFrame getJf() {
-        return jf;
+    @Override
+    public void createHero(ActionListener action) {
+        this.btnCreateHero.addActionListener(action);
     }
 
-    public void setJf(JFrame jf) {
-        this.jf = jf;
-    }
-
-    public JButton getBtnCreateHero() {
-        return btnCreateHero;
-    }
-
-    public void setBtnCreateHero(JButton btnCreateHero) {
-        this.btnCreateHero = btnCreateHero;
-    }
-
-    public JButton getBtnPreviouslyHero() {
-        return btnPreviouslyHero;
-    }
-
-    public void setBtnPreviouslyHero(JButton btnPreviouslyHero) {
-        this.btnPreviouslyHero = btnPreviouslyHero;
+    @Override
+    public void showPreviouslyHeroes(ActionListener action) {
+        this.btnPreviouslyHero.addActionListener(action);
     }
 }

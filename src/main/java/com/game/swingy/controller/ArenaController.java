@@ -24,7 +24,7 @@ class ArenaController {
         villainHealth = this.villain.getHitPoints();
         arenaView = new ArenaView();
         setTextOnVillainLable(villain);
-        setTextOnHeroLable();
+        setTextOnHeroLabel();
         initBtn();
     }
 
@@ -111,7 +111,7 @@ class ArenaController {
             arenaView.showMissAttack();
         else
             hero.takeDamage(attack);
-        setTextOnHeroLable();
+        setTextOnHeroLabel();
         arenaView.getTurnLable().setText("Your turn");
         arenaView.getHeroBtn().setEnabled(false);
         arenaView.getVillianBtn().setEnabled(true);
@@ -141,8 +141,10 @@ class ArenaController {
         arenaView.getHealthLabel2().setText(Integer.toString(health));
     }
 
-    private void setTextOnHeroLable() {
+    private void setTextOnHeroLabel() {
 
+        System.out.println(Map.getMap().getObservers().get(0).getCoordinates().getX());
+        System.out.println(Map.getMap().getObservers().get(0).getCoordinates().getY());
         Hero hero = (Hero)Map.getMap().getObservers().get(0);
         String name = hero.getName();
         String heroClass = hero.getHeroClass();

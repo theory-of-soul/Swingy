@@ -1,10 +1,10 @@
 package com.game.swingy.core.Unit;
 
-import com.game.swingy.core.Map.EnumUnitTypeField;
+import com.game.swingy.core.Map.UnitTypeFieldEnum;
 
 public interface Builder {
 
-    public void setKindOfUnit(EnumUnitTypeField kindOfUnit);
+    public void setKindOfUnit(UnitTypeFieldEnum kindOfUnit);
     public void setName(String name);
     public void setHeroClass(String heroClass);
     public void setLevel(int level);

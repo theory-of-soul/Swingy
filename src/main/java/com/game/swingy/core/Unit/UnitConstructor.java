@@ -1,12 +1,12 @@
 package com.game.swingy.core.Unit;
 
-import com.game.swingy.core.Map.EnumUnitTypeField;
+import com.game.swingy.core.Map.UnitTypeFieldEnum;
 
 public class UnitConstructor {
 
     public void constructSamnite(Builder builder, String name) {
 
-        builder.setKindOfUnit(EnumUnitTypeField.HERO);
+        builder.setKindOfUnit(UnitTypeFieldEnum.HERO);
         builder.setName(name);
         builder.setHeroClass("Samnite");
         builder.setLevel(0);
@@ -22,7 +22,7 @@ public class UnitConstructor {
 
     public void constructSkissor(Builder builder, String name) {
 
-        builder.setKindOfUnit(EnumUnitTypeField.HERO);
+        builder.setKindOfUnit(UnitTypeFieldEnum.HERO);
         builder.setName(name);
         builder.setHeroClass("Skissor");
         builder.setLevel(0);
@@ -38,7 +38,7 @@ public class UnitConstructor {
 
     public void constructPeltasts(Builder builder, String name) {
 
-        builder.setKindOfUnit(EnumUnitTypeField.HERO);
+        builder.setKindOfUnit(UnitTypeFieldEnum.HERO);
         builder.setName(name);
         builder.setHeroClass("Peltasts");
         builder.setLevel(0);
@@ -53,7 +53,7 @@ public class UnitConstructor {
 
     public void constructVillian0(Builder builder, String name) {
 
-        builder.setKindOfUnit(EnumUnitTypeField.ENEMY);
+        builder.setKindOfUnit(UnitTypeFieldEnum.ENEMY);
         builder.setName(name);
         builder.setHeroClass("Villain");
         builder.setLevel(0);
@@ -68,7 +68,7 @@ public class UnitConstructor {
 
     public void constructVillian1(Builder builder, String name) {
 
-        builder.setKindOfUnit(EnumUnitTypeField.ENEMY);
+        builder.setKindOfUnit(UnitTypeFieldEnum.ENEMY);
         builder.setName(name);
         builder.setHeroClass("Villain");
         builder.setLevel(1);
@@ -83,7 +83,7 @@ public class UnitConstructor {
 
     public void constructVillian2(Builder builder, String name) {
 
-        builder.setKindOfUnit(EnumUnitTypeField.ENEMY);
+        builder.setKindOfUnit(UnitTypeFieldEnum.ENEMY);
         builder.setName(name);
         builder.setHeroClass("Villain");
         builder.setLevel(2);
@@ -98,7 +98,7 @@ public class UnitConstructor {
 
     public void constructVillian3(Builder builder, String name) {
 
-        builder.setKindOfUnit(EnumUnitTypeField.ENEMY);
+        builder.setKindOfUnit(UnitTypeFieldEnum.ENEMY);
         builder.setName(name);
         builder.setHeroClass("Villain");
         builder.setLevel(3);
@@ -113,7 +113,7 @@ public class UnitConstructor {
 
     public void constructVillian4(Builder builder, String name) {
 
-        builder.setKindOfUnit(EnumUnitTypeField.ENEMY);
+        builder.setKindOfUnit(UnitTypeFieldEnum.ENEMY);
         builder.setName(name);
         builder.setHeroClass("Villain");
         builder.setLevel(4);

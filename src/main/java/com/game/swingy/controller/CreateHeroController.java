@@ -34,8 +34,6 @@ public class CreateHeroController {
         String nameHero;
         String selectedHeroClass;
 
-
-        //Coordinates coordinates = new Coordinates(0,0);
         nameHero = createHeroView.getNameHero().getText();
         selectedHeroClass = (String) createHeroView.getHeroClassList().getSelectedItem();
 

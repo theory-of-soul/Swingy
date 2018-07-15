@@ -1,7 +1,10 @@
 package com.game.swingy.controller;
 
 import com.game.swingy.core.Map.Map;
-import com.game.swingy.view.console.StartViewInterface;
+import com.game.swingy.core.Map.ModeEnum;
+import com.game.swingy.view.StartView;
+import com.game.swingy.view.console.StartConsoleView;
+import com.game.swingy.view.gui.StartGuiView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -9,19 +12,24 @@ import java.awt.event.ActionListener;
 
 public class StarterController {
 
-    private StartViewInterface startView;
+    private StartView startView;
 
-    public StarterController(StartViewInterface view) {
-        this.startView = view;
+    public StarterController() {
+        if (Map.getMap().getMode() == ModeEnum.GUI)
+            this.startView = new StartGuiView();
+        else
+            this.startView = new StartConsoleView();
+        initGame();
     }
 
     public void initGame() {
-        startView.getBtnCreateHero().addActionListener(new ActionListener() {
+        startView.createHero(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onClickCreateHero();
             }
         });
-        startView.getBtnPreviouslyHero().addActionListener(new ActionListener() {
+
+        startView.showPreviouslyHeroes(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onClickPreviouslyHero();
             }
@@ -38,8 +46,8 @@ public class StarterController {
 
         System.out.println("Отработало предвудущие герои");
         if (Map.getMap().getDbMySQL().isEmptyHeroTable()) {
-            Map.getMap().createPreviousHeroView();
-            Map.getMap().getPreviousHeroView().initPreviousHeroView();
+            PreviousHeroController previousHeroController = new
+                    PreviousHeroController();
         }
         else {
             JOptionPane.showMessageDialog(null,

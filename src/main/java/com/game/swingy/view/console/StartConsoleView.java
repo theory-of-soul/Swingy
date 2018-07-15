@@ -1,51 +1,50 @@
 package com.game.swingy.view.console;
 
+import com.game.swingy.view.StartView;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Scanner;
 
-public class StartConsoleView implements StartViewInterface {
+public class StartConsoleView implements StartView {
 
-    private JFrame jf;
-    private JButton btnCreateHero;
-    private JButton btnPreviouslyHero;
+    private int inpute;
 
     public StartConsoleView() {
-        this.btnCreateHero = new JButton("Create a hero2");//Creating a Button named Say Hello
-        this.btnPreviouslyHero = new JButton("Select a previously created hero");//Creating a Button named Say Hello
-
-        jf = new JFrame("Swingy");		//Creating a JFrame with name MyWindow
-        jf.add(btnCreateHero);             		//adding button to frame
-        jf.add(btnPreviouslyHero);             		//adding button to frame
-        jf.setLayout(new FlowLayout());        //setting layout using FlowLayout object
-        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	//setting close  operation.
-        jf.setSize(400, 400);            	//setting size
-        jf.setVisible(true);            	//setting frame visibility
-        jf.setLocationRelativeTo(null);
-        jf.pack();
+        System.out.println("Console game started\n" +
+                "Select one option:\n" +
+                "1 - Create a new hero\n" +
+                "2 - Select a previously created hero\n");
+        /*System.out.println("Write a name of hero:\n");
+        System.out.println("Chose type of hero:\n" +
+                "1 - Samnite\n" +
+                "2 - Skissor\n" +
+                "3 - Peltasts\n");
+        System.out.println("Select a previously created hero:\n");*/
+        Scanner sc = new Scanner(System.in); // object for scanner
+        int no = sc.nextInt(); // similiarli Float,Double can be added to it as per the data type.
+        System.out.println("you entered : "+no);
     }
 
-    public JFrame getJf() {
-        return jf;
+    @Override
+    public void createHero(ActionListener action) {
+        Scanner sc = new Scanner(System.in); // object for scanner
+        this.inpute = sc.nextInt(); // similiarli Float,Double can be added to it as per the data type.
+        System.out.println("you entered : "+inpute);
     }
 
-    public void setJf(JFrame jf) {
-        this.jf = jf;
+
+
+
+
+    @Override
+    public void showPreviouslyHeroes(ActionListener action) {
+
     }
 
-    public ActionListener getBtnCreateHero() {
-        return btnCreateHero;
-    }
-
-    public void setBtnCreateHero(JButton btnCreateHero) {
-        this.btnCreateHero = btnCreateHero;
-    }
-
-    public ActionListener getBtnPreviouslyHero() {
-        return btnPreviouslyHero;
-    }
-
-    public void setBtnPreviouslyHero(JButton btnPreviouslyHero) {
-        this.btnPreviouslyHero = btnPreviouslyHero;
+    public int getInpute() {
+        return inpute;
     }
 }
